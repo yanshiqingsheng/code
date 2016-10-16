@@ -62,7 +62,7 @@
         <scene sceneID="ZW8-yJ-uba">
             <objects>
                 <navigationController id="FyI-Sc-u43" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="我的" id="6pT-A7-mxr"/>
+                    <tabBarItem key="tabBarItem" title="我的" image="我的" selectedImage="我的_选中" id="6pT-A7-mxr"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="AbV-al-r8A">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -108,7 +108,7 @@
         <scene sceneID="EBd-Qs-TNy">
             <objects>
                 <navigationController id="CKO-jD-k2y" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="警示" id="aXW-8z-GiP"/>
+                    <tabBarItem key="tabBarItem" title="警示" image="警示" selectedImage="警示_选中" id="aXW-8z-GiP"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="5ar-eJ-Rk4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -205,7 +205,7 @@
         <scene sceneID="6ri-jp-xSu">
             <objects>
                 <navigationController id="GTe-5S-9mQ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="企业" id="YCG-Ur-6jt"/>
+                    <tabBarItem key="tabBarItem" title="企业" image="企业" selectedImage="企业_选中" id="YCG-Ur-6jt"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="rZN-KM-GwS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -307,7 +307,7 @@
         <scene sceneID="Tsc-3u-TJ1">
             <objects>
                 <navigationController id="vle-hJ-EdH" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="举报" id="fNR-fE-jw4"/>
+                    <tabBarItem key="tabBarItem" title="举报" image="举报" selectedImage="举报_选中" id="fNR-fE-jw4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Q3b-k5-0vF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -324,7 +324,7 @@
         <scene sceneID="adO-2x-CJ2">
             <objects>
                 <navigationController id="5Yj-gS-M45" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="商品" id="1BJ-LZ-SBm"/>
+                    <tabBarItem key="tabBarItem" title="商品" image="商品" selectedImage="商品_选中" id="1BJ-LZ-SBm"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gPD-I3-I58">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -338,4 +338,16 @@
             <point key="canvasLocation" x="1092" y="1540"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="举报" width="32" height="32"/>
+        <image name="举报_选中" width="32" height="32"/>
+        <image name="企业" width="32" height="32"/>
+        <image name="企业_选中" width="32" height="32"/>
+        <image name="商品" width="32" height="32"/>
+        <image name="商品_选中" width="32" height="32"/>
+        <image name="我的" width="32" height="32"/>
+        <image name="我的_选中" width="32" height="32"/>
+        <image name="警示" width="32" height="32"/>
+        <image name="警示_选中" width="32" height="32"/>
+    </resources>
 </document>

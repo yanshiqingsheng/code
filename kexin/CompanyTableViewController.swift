@@ -25,6 +25,8 @@ class CompanyTableViewController : UITableViewController , UISearchResultsUpdati
         searchController = UISearchController(searchResultsController: nil)
         tableView.tableHeaderView = searchController.searchBar
         
+        //tableView.backgroundColor = UIColor.blue
+        
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "查找企业..."
