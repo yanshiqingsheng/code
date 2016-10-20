@@ -260,6 +260,7 @@
                                 <connections>
                                     <outlet property="ImageView" destination="IOt-jN-8wU" id="waU-cg-ARo"/>
                                     <outlet property="Label" destination="5Xd-dh-xn1" id="8qg-Ds-cLB"/>
+                                    <segue destination="BR2-4U-cab" kind="show" id="C0C-c2-PqP"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -273,6 +274,47 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sy7-Tw-CT0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1916" y="1539.5802098950526"/>
+        </scene>
+        <!--Product Detail Table View Controller-->
+        <scene sceneID="Hh3-j5-c6e">
+            <objects>
+                <tableViewController id="BR2-4U-cab" customClass="ProductDetailTableViewController" customModule="kexin" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="28" sectionFooterHeight="28" id="ghN-Bd-pdg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <imageView key="tableHeaderView" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="q6N-rZ-NVY">
+                            <rect key="frame" x="0.0" y="64" width="375" height="300"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="k3K-r0-FH7" rowHeight="75" style="IBUITableViewCellStyleDefault" id="p8Y-g5-1c3">
+                                <rect key="frame" x="0.0" y="392" width="375" height="75"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="p8Y-g5-1c3" id="gs4-VY-Y4B">
+                                    <frame key="frameInset" width="375" height="74"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="k3K-r0-FH7">
+                                            <frame key="frameInset" minX="15" width="345" height="74"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="BR2-4U-cab" id="mC8-l4-M4v"/>
+                            <outlet property="delegate" destination="BR2-4U-cab" id="cJ3-34-RQl"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ebZ-Ts-yxY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2789.5999999999999" y="1537.7811094452775"/>
         </scene>
         <!--举报-->
         <scene sceneID="eEp-iV-yZk">

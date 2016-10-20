@@ -50,12 +50,12 @@ class CompanyDetailTableViewController : UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "Cell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-        var tmp1: String = getNilString(tmp: companyDetail!.com_name)
+        let tmp1: String = getNilString(tmp: companyDetail!.com_name)
                            + "\n\n基本信息"
                            + "\n企业类型：                    " + getNilString(tmp: companyDetail!.role_type)
                            + "\n所在地区：                    " + getNilString(tmp: companyDetail!.address)
                            + "\n是否有直接进口业务："             + getNilString(tmp: companyDetail!.is_manu_import)
-        var tmp2: String =   "\n许可范围：                "     + getNilString(tmp: companyDetail!.real_business_scope)
+        let tmp2: String =   "\n许可范围：                "     + getNilString(tmp: companyDetail!.real_business_scope)
                            + "\n是否有门户网站：        "        + getNilString(tmp: companyDetail!.have_site?.description)
                            + "\n\n工商注册信息"
                            + "\n工商注册号：                "     + getNilString(tmp: companyDetail!.reg_on)

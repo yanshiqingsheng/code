@@ -83,7 +83,7 @@ struct CertificateModels: JSONJoy {
     }
     init() throws{
         
-        var collect = [CertificateModel]()
+        let collect = [CertificateModel]()
         
         companys = collect
     }

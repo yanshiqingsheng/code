@@ -18,7 +18,7 @@ class HttpHandler {
         var companys:[Company] = []
         do {
             //print("city is: \(get_result())")
-            var params1 = ["keywords":keywords,"page":"1","pageSize":"10"]
+            let params1 = ["keywords":keywords,"page":"1","pageSize":"10"]
             companys = try Companys(JSONDecoder("{\"companys\":" + get_result(url:"http://114.55.67.233:8080/kexin/enterprise/search", params: params1) + "}")).companys
             
           } catch {
@@ -34,7 +34,7 @@ class HttpHandler {
         var companys : CompanyDetail?
         do {
             //print("city is: \(get_result())")
-            var params1 = ["id":id,"record_no":record_no]
+            let params1 = ["id":id,"record_no":record_no]
             companys = try CompanyDetail(JSONDecoder( get_result(url:"http://114.55.67.233:8080/kexin/enterprise/detail", params: params1)))
             
         } catch {
@@ -47,10 +47,10 @@ class HttpHandler {
     
     
     
-    func getProducts() -> [Product]
+    func getProducts(keywords:String) -> [Product]
     {
         var products:[Product] = []
-        var params1 = ["productname":"","page":"1","pageSize":"10"]
+        let params1 = ["productname":keywords,"page":"1","pageSize":"10"]
         do {
             //print("city is: \(get_result())")
             

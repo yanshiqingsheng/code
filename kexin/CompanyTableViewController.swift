@@ -30,7 +30,53 @@ class CompanyTableViewController : UITableViewController , UISearchResultsUpdati
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "查找企业..."
+        self.setupRefresh()
+        
     }
+    
+    
+    
+    func setupRefresh(){
+        self.tableView.addHeaderWithCallback(callback: {
+            let tempcompanys = self.companyHandler.getCompanys(keywords: "")
+            if(tempcompanys.count != 0)
+            {
+                self.companys = tempcompanys
+            }
+            
+            let delayInSeconds:Int64 =  100000000  * 2
+            
+            
+            let popTime:DispatchTime = DispatchTime.now() + Double(delayInSeconds) / Double(NSEC_PER_SEC)
+            DispatchQueue.main.asyncAfter(deadline: popTime, execute: {
+                self.tableView.reloadData()
+                self.tableView.headerEndRefreshing()
+            })
+            
+        })
+        
+        
+        self.tableView.addFooterWithCallback(callback: {
+           
+            let tempcompanys = self.companyHandler.getCompanys(keywords: "")
+            if(tempcompanys.count != 0)
+            {
+                self.companys.append(contentsOf: tempcompanys)
+            }
+            let delayInSeconds:Int64 = 100000000 * 2
+            let popTime:DispatchTime = DispatchTime.now() + Double(delayInSeconds) / Double(NSEC_PER_SEC)
+            DispatchQueue.main.asyncAfter(deadline: popTime, execute: {
+                self.tableView.reloadData()
+                self.tableView.footerEndRefreshing()
+                
+                //self.tableView.setFooterHidden(true)
+            })
+        })
+    }
+
+    
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
