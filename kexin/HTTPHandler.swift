@@ -55,15 +55,31 @@ class HttpHandler {
         return companys!
     }
     
+    
+    func getReportCompanyDetails(id:String) -> ReportCompanyDetail
+    {
+        var companys : ReportCompanyDetail?
+        do {
+            //print("city is: \(get_result())")
+            //let params1 = ["id":id]
+            companys = try ReportCompanyDetail(JSONDecoder( get_result(url:"http://114.55.67.233:8080/kexin/report-company/" + id, params: nil)))
+            
+        } catch {
+            print("unable to parse the JSON")
+        }
+        return companys!
+    }
+    
+    
+    
     func getProductDetails(id:String,userid:String) -> ProductDetail
     {
         var productDetail : ProductDetail?
         
         
-        //let test = "{\"productname\":\"注射用盐酸多柔比星\",\"brands\":\"\",\"companyname\":\"深圳万乐药业有限公司\",\"campanyaddress\":\"深圳国家生物医药产业基地坪山新区兰竹东路万乐药业大厦\",\"license\":null,\"evaluation\":\"null\",\"iscollect\":\"0\",\"iscomment\":\"0\",\"passtime\":1357441910000,\"productimg\":[\"http://www.ecdata.org.cn/srv/viewDownloadAction.action?fileName=publishedFile/214894_picurl_.jpg\"],\"authorize\":0,\"webSiteList\":[],\"attrList\":[{\"display_name\":\"用法用量\",\"display_position\":\"OTHER\",\"input_type\":\"TEXT_AREA\",\"extra_info\":\"500\",\"draft_field_name\":\"USAGE\",\"value\":\"静脉冲入、静脉滴注或动脉注射。\\n\"}]}"
+       
         do {
-            //print("city is: \(get_result())")
-            let params1 = ["id":id,"userid":userid]
+            
             productDetail = try ProductDetail(JSONDecoder(get_result(url:"http://114.55.67.233:8080/kexin/search-product/"+id+"/"+userid, params: nil).replacingOccurrences(of: "\\n", with: "").replacingOccurrences(of: "\\t", with: "")))
             
         } catch {
@@ -72,7 +88,20 @@ class HttpHandler {
         return productDetail!
     }
     
-    
+    func getReportCompanys() -> [ReportCompany]
+    {
+        var companys : [ReportCompany] = []
+        do {
+            //print("city is: \(get_result())")
+            //let params1 = ["id":id,"record_no":record_no]
+            companys = try ReportCompanys(JSONDecoder( "{\"reportcompanys\":" + get_result(url:"http://114.55.67.233:8080/kexin/report-company", params: nil) + "}")).products
+            
+        } catch {
+            print("unable to parse the JSON")
+        }
+        return companys
+    }
+
     
     func getProducts(keywords:String, pageNum :Int) -> [Product]
     {
