@@ -11,13 +11,22 @@ import UIKit
 class ProductDetailTableViewController : UITableViewController {
     
    
+    var id : String?
+    var userid : String?
+    @IBOutlet var imageView: UIImageView!
+    var productDetail : ProductDetail?
+    let productDetailHandler = HttpHandler()
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-               self.tableView.estimatedRowHeight = 80.0
-        self.tableView.rowHeight = UITableViewAutomaticDimension
         
-        //print(companys.count)
+        productDetail = productDetailHandler.getProductDetails(id: self.id!, userid: self.userid!)
+        // Do any additional setup after loading the view, typically from a nib.
+        self.tableView.estimatedRowHeight = 80.0
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        print(productDetail?.productimg?.replacingOccurrences(of: "\"", with: ""))
+        print(self.userid)
+        self.imageView.kf.setImage(with: URL(string: (productDetail?.productimg?.replacingOccurrences(of: "\"", with: ""))!))
+       
     }
     
     override func didReceiveMemoryWarning() {
@@ -46,7 +55,7 @@ class ProductDetailTableViewController : UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         
         // Configure the cell...
-        cell.textLabel?.text = "shiji"
+        cell.textLabel?.text = self.id
         // Solution to the exercise
         //cell.imageView?.image = UIImage(named: companys[indexPath.row])
         //cell.imageView?.image = UIImage(data: NSData(contentsOfURL:NSURL(string: products[indexPath.row].picurl)!)!)

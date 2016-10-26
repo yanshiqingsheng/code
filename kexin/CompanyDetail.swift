@@ -49,7 +49,7 @@ struct CompanyDetail: JSONJoy {
                 annual_check = ""
             }
         if decoder["certificateModels"].string != nil {
-            certificateModels = try CertificateModels(decoder["certificateModels"])
+            certificateModels = try CertificateModels(JSONDecoder("{\"certificateModels\":"+decoder["certificateModels"].description+"}"))
         }else{
             certificateModels = try CertificateModels()
         }
@@ -60,17 +60,12 @@ struct CompanyDetail: JSONJoy {
         have_site = decoder["have_site"].bool
         is_manu_import = decoder["is_manu_import"].string
         law_person = decoder["law_person"].string
-        
         lp_phone = decoder["lp_phone"].string
-        //if decoder["real_business_scope"].string != nil{
-            real_business_scope = decoder["real_business_scope"].string
-        //}else{
-        //     real_business_scope = ""
-        // }
+        real_business_scope = decoder["real_business_scope"].string
         reg_address = decoder["reg_address"].string
         reg_branch = decoder["reg_branch"].string
         reg_capital = decoder["reg_capital"].string
-        reg_certificate = decoder["reg_certificate"].string
+        reg_certificate = decoder["reg_certificate"].description
         reg_on = decoder["reg_on"].string
         role_type = decoder["role_type"].string
         site_icp_no = decoder["site_icp_no"].string

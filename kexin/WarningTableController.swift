@@ -1,18 +1,18 @@
 //
-//  CompanyTableViewController.swift
+//  WarningTableController.swift
 //  kexin
 //
-//  Created by 维高 on 16/10/9.
+//  Created by 维高 on 16/10/23.
 //  Copyright © 2016年 维高. All rights reserved.
 //
 
 import UIKit
 
-class CompanyTableViewController : UITableViewController , UISearchResultsUpdating {
-
-    var companys:[Company] = []
-    var searchCompanys:[Company] = []
-    let companyHandler = HttpHandler()
+class WarningTableController : UITableViewController , UISearchResultsUpdating {
+    
+    var warnings:[WarningInfo] = []
+    var searchwarnings:[WarningInfo] = []
+    let warningsHandler = HttpHandler()
     var searchController: UISearchController!
     var pageNum: Int = 1
     
@@ -20,8 +20,8 @@ class CompanyTableViewController : UITableViewController , UISearchResultsUpdati
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        companys = companyHandler.getCompanys(keywords: "", pageNum: pageNum)
-        searchCompanys = companys
+        warnings = warningsHandler.getWarnings(keywords: "", pageNum: pageNum)
+        searchwarnings = warnings
         self.tableView.estimatedRowHeight = 10.0
         self.tableView.rowHeight = UITableViewAutomaticDimension
         //print(companys.count)
@@ -41,10 +41,10 @@ class CompanyTableViewController : UITableViewController , UISearchResultsUpdati
     
     func setupRefresh(){
         self.tableView.addHeaderWithCallback(callback: {
-            let tempcompanys = self.companyHandler.getCompanys(keywords: "", pageNum: 1)
+            let tempcompanys = self.warningsHandler.getWarnings(keywords: "", pageNum: 1)
             if(tempcompanys.count != 0)
             {
-                self.companys = tempcompanys
+                self.warnings = tempcompanys
             }
             
             let delayInSeconds:Int64 =  100000000  * 2
@@ -60,12 +60,12 @@ class CompanyTableViewController : UITableViewController , UISearchResultsUpdati
         
         
         self.tableView.addFooterWithCallback(callback: {
-           
+            
             self.pageNum = self.pageNum + 1
-            let tempcompanys = self.companyHandler.getCompanys(keywords: "", pageNum: self.pageNum)
+            let tempcompanys = self.warningsHandler.getWarnings(keywords: "", pageNum: self.pageNum)
             if(tempcompanys.count != 0)
             {
-                self.companys.append(contentsOf: tempcompanys)
+                self.warnings.append(contentsOf: tempcompanys)
             }
             let delayInSeconds:Int64 = 100000000 * 2
             let popTime:DispatchTime = DispatchTime.now() + Double(delayInSeconds) / Double(NSEC_PER_SEC)
@@ -77,7 +77,7 @@ class CompanyTableViewController : UITableViewController , UISearchResultsUpdati
             })
         })
     }
-
+    
     
     
     
@@ -93,23 +93,33 @@ class CompanyTableViewController : UITableViewController , UISearchResultsUpdati
         
         
         if searchController.isActive {
-            return searchCompanys.count
+            return searchwarnings.count
         } else {
-            return companys.count
+            return warnings.count
         }
-
+        
     }
-    
+    func getNilString(tmp:String?)->String
+    {
+        if tmp == nil
+        {
+            return ""
+        }else
+        {
+            return tmp!
+        }
+        
+    }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "Cell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         
         
-        let com = (searchController.isActive) ? searchCompanys[indexPath.row] : companys[indexPath.row]
+        let com = (searchController.isActive) ? searchwarnings[indexPath.row] : warnings[indexPath.row]
         
         
         // Configure the cell...
-        cell.textLabel?.text = com.com_name! + "\n企业类型：" + com.role_type! + "\n企业地址：" + com.reg_address! + "\n商品数量：" + com.product_num!
+        cell.textLabel?.text = getNilString(tmp: com.title) + "\n发布单位：" + getNilString(tmp: com.publish_department) + "\n发布时间：" + getNilString(tmp: com.publish_time)
         
         // Solution to the exercise
         //cell.imageView?.image = UIImage(named: companys[indexPath.row])
@@ -119,7 +129,7 @@ class CompanyTableViewController : UITableViewController , UISearchResultsUpdati
         
         return cell
     }
-
+    /*
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showCompanyDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
@@ -131,10 +141,10 @@ class CompanyTableViewController : UITableViewController , UISearchResultsUpdati
             }
         }
     }
-    
+    */
     
     func filterContent(for searchText: String) {
-        searchCompanys = companyHandler.getCompanys(keywords: searchText, pageNum: 1)
+        searchwarnings = warningsHandler.getWarnings(keywords: searchText, pageNum: 1)
     }
     
     func updateSearchResults(for searchController: UISearchController) {
@@ -144,5 +154,6 @@ class CompanyTableViewController : UITableViewController , UISearchResultsUpdati
             tableView.reloadData()
         }
     }
-
+    
 }
+
