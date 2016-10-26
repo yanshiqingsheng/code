@@ -16,6 +16,12 @@ class ProductDetailTableViewController : UITableViewController {
     @IBOutlet var imageView: UIImageView!
     var productDetail : ProductDetail?
     let productDetailHandler = HttpHandler()
+    
+    var productDetailModules: [ProductDetailModule] = []
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,8 +32,48 @@ class ProductDetailTableViewController : UITableViewController {
         print(productDetail?.productimg?.replacingOccurrences(of: "\"", with: ""))
         print(self.userid)
         self.imageView.kf.setImage(with: URL(string: (productDetail?.productimg?.replacingOccurrences(of: "\"", with: ""))!))
-       
+        prepareData()
     }
+    
+    func prepareData()
+    {
+    
+        var temp = ProductDetailModule()
+        temp.labelName = "商品名称"
+        temp.labelValue = productDetail?.productname
+        productDetailModules.append(temp)
+        temp.labelName = "品牌"
+        temp.labelValue = productDetail?.brands
+        productDetailModules.append(temp)
+        temp.labelName = "生产企业"
+        temp.labelValue = productDetail?.companyname
+        productDetailModules.append(temp)
+        temp.labelName = "生产企业地址"
+        temp.labelValue = productDetail?.companyaddress
+        productDetailModules.append(temp)
+        temp.labelName = "生产许可证"
+        temp.labelValue = productDetail?.license
+        productDetailModules.append(temp)
+        temp.labelName = "更新时间"
+        temp.labelValue = productDetail?.passtime?.description
+        productDetailModules.append(temp)
+        temp.labelName = "产品图片"
+        temp.labelValue = productDetail?.productimg
+        productDetailModules.append(temp)
+
+        for cc in (productDetail?.attrList?.productDetailArrayLists)! {
+        
+        
+            temp.labelName = cc.display_name
+            temp.labelValue = cc.value
+            productDetailModules.append(temp)
+        
+        
+        
+        }
+    
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -37,7 +83,19 @@ class ProductDetailTableViewController : UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return the number of rows in the section.
-        return 3
+        switch section {
+        // Leave us feedback section
+        case 0:
+            
+            return 1
+            
+        // Follow us section
+        case 1: return productDetailModules.count
+            
+        case 2: return 1
+        default:
+            return 1
+        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -46,7 +104,22 @@ class ProductDetailTableViewController : UITableViewController {
     
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "ceshi"
+        //return "ceshi"
+        
+        switch section {
+        // Leave us feedback section
+        case 0:
+            
+             return ""
+            
+        // Follow us section
+        case 1: return "商品信息"
+            
+        case 2: return "商品评价"
+        default:
+            return ""
+        }
+        
     }
 
     
@@ -55,32 +128,23 @@ class ProductDetailTableViewController : UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ProductDetailCell
         
         // Configure the cell...
-        cell.LabelName?.text = "2"
-        cell.LabelValue?.text = "2"
-        // Solution to the exercise
-        //cell.imageView?.image = UIImage(named: companys[indexPath.row])
-        //cell.imageView?.image = UIImage(data: NSData(contentsOfURL:NSURL(string: products[indexPath.row].picurl)!)!)
-        //cell.imageView?.sizeThatFits(CGSize(width: 50, height: 50))
-        
-        
-        //var strUrl = products[indexPath.row].picurl
-        
-        //url
-        
-        //var url = NSURL(string: strUrl!)
-        
-        //图片数据
-        
-        //var data = NSData(contentsOf:url as! URL)
-        
-        //通过得到图片数据来加载
-        //cell.ImageView?.image = UIImage(data: data! as Data)
-        //cell.imageView?.image?.draw(in: CGRect(x: 0, y: 0, width: 50, height: 50))
-        //let image = UIImage(data: data!)
-        
-        // Uncomment the line below (i.e. removing //) if you just want to display the same image
-        // cell.imageView?.image = UIImage(named: "restaurant")
-        
+               switch indexPath.section {
+        // Leave us feedback section
+        case 0:
+            
+            cell.LabelName?.text = ""
+            cell.LabelValue?.text = ""
+            
+        // Follow us section
+        case 1: cell.LabelName?.text = self.productDetailModules[indexPath.row].labelName
+        cell.LabelValue?.text = self.productDetailModules[indexPath.row].labelValue
+
+            
+        case 2: cell.LabelName?.text = ""
+        cell.LabelValue?.text = ""
+        default:
+            cell.LabelName?.text = ""
+            cell.LabelValue?.text = ""        }
         return cell
     }
     

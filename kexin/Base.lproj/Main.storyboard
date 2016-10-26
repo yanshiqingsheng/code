@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -345,21 +346,30 @@
                                     <frame key="frameInset" width="375" height="74"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ES-lM-t8D">
-                                            <frame key="frameInset" minX="16" minY="8" width="92" height="59"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ES-lM-t8D">
+                                            <frame key="frameInset" minX="3.12%" minY="8" width="119" height="59"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Value" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HRo-pa-lk2">
-                                            <frame key="frameInset" minX="150" minY="8" width="209" height="58"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" text="Value" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HRo-pa-lk2">
+                                            <frame key="frameInset" minX="95.18%" minY="8" width="209" height="58"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="209" id="CYS-hV-V0P"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="HRo-pa-lk2" firstAttribute="bottom" secondItem="gs4-VY-Y4B" secondAttribute="bottomMargin" constant="8" id="00a-Tk-S7c"/>
+                                        <constraint firstItem="HRo-pa-lk2" firstAttribute="top" secondItem="gs4-VY-Y4B" secondAttribute="topMargin" constant="8" id="3ZZ-mL-ZNU"/>
+                                        <constraint firstItem="HRo-pa-lk2" firstAttribute="trailing" secondItem="gs4-VY-Y4B" secondAttribute="trailingMargin" id="41N-YE-HVl"/>
+                                        <constraint firstItem="HRo-pa-lk2" firstAttribute="firstBaseline" secondItem="1ES-lM-t8D" secondAttribute="firstBaseline" id="DQ3-08-bCt"/>
+                                        <constraint firstItem="HRo-pa-lk2" firstAttribute="leading" secondItem="1ES-lM-t8D" secondAttribute="trailing" constant="31" id="TNV-hp-Nr9"/>
+                                        <constraint firstItem="HRo-pa-lk2" firstAttribute="centerY" secondItem="1ES-lM-t8D" secondAttribute="centerY" id="y98-dN-BTV"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="LabelName" destination="1ES-lM-t8D" id="eTe-65-S7D"/>

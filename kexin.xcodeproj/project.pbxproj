@@ -13,6 +13,7 @@
 		650E13DF1DB7B4DF0063BC40 /* ProductDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650E13DE1DB7B4DF0063BC40 /* ProductDetailTableViewController.swift */; };
 		650E13F81DB7BC360063BC40 /* OCChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 650E13F71DB7BC360063BC40 /* OCChannel.m */; };
 		650E13FF1DB7BE0F0063BC40 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 650E13FE1DB7BE0F0063BC40 /* ImageIO.framework */; };
+		653A37A21DC0BFD4006BAB9F /* ProductDetailModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A37A11DC0BFD4006BAB9F /* ProductDetailModule.swift */; };
 		657486A51DA6176D009B0B07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657486A41DA6176D009B0B07 /* AppDelegate.swift */; };
 		657486A71DA6176D009B0B07 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657486A61DA6176D009B0B07 /* ViewController.swift */; };
 		657486AA1DA6176D009B0B07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 657486A81DA6176D009B0B07 /* Main.storyboard */; };
@@ -261,6 +262,7 @@
 		650E13F61DB7BC360063BC40 /* OCChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCChannel.h; sourceTree = "<group>"; };
 		650E13F71DB7BC360063BC40 /* OCChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCChannel.m; sourceTree = "<group>"; };
 		650E13FE1DB7BE0F0063BC40 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		653A37A11DC0BFD4006BAB9F /* ProductDetailModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDetailModule.swift; sourceTree = "<group>"; };
 		657486A11DA6176D009B0B07 /* kexin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kexin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		657486A41DA6176D009B0B07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		657486A61DA6176D009B0B07 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -381,6 +383,7 @@
 				657486DB1DAA68A5009B0B07 /* CompanyTableViewController.swift */,
 				650E13DC1DAFCF390063BC40 /* CompanyDetailTableViewController.swift */,
 				650E13DE1DB7B4DF0063BC40 /* ProductDetailTableViewController.swift */,
+				653A37A11DC0BFD4006BAB9F /* ProductDetailModule.swift */,
 				65B775671DBBA8DE00FD76AB /* ProductDetailCell.swift */,
 				6574871B1DAD15B6009B0B07 /* ProductTableViewController.swift */,
 				65B775631DBB88F800FD76AB /* ProductDetail.swift */,
@@ -829,6 +832,7 @@
 				65B7755F1DB7D74200FD76AB /* RefreshConst.swift in Sources */,
 				6574871C1DAD15B6009B0B07 /* ProductTableViewController.swift in Sources */,
 				65B7755D1DB7D74200FD76AB /* Refresh.swift in Sources */,
+				653A37A21DC0BFD4006BAB9F /* ProductDetailModule.swift in Sources */,
 				65B775641DBB88F800FD76AB /* ProductDetail.swift in Sources */,
 				65B775601DB7D74200FD76AB /* RefreshFooterView.swift in Sources */,
 				650E13C91DAFB7FF0063BC40 /* CompanyDetail.swift in Sources */,
