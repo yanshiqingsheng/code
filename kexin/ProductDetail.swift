@@ -57,7 +57,8 @@ struct ProductDetail: JSONJoy {
         iscollect  = decoder["iscollect"].string
         iscomment = decoder["iscomment"].string
         passtime = decoder["passtime"].integer
-        productimg = decoder["productimg"].description.s
+        
+        productimg = decoder["productimg"].description.replacingOccurrences(of: "[", with: "").replacingOccurrences(of: "]", with: "")
         //webSiteList = try WebSiteList(decoder["webSiteList"])
         
         

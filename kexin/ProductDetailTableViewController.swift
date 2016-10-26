@@ -52,10 +52,11 @@ class ProductDetailTableViewController : UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "Cell"
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ProductDetailCell
         
         // Configure the cell...
-        cell.textLabel?.text = self.id
+        cell.LabelName?.text = "2"
+        cell.LabelValue?.text = "2"
         // Solution to the exercise
         //cell.imageView?.image = UIImage(named: companys[indexPath.row])
         //cell.imageView?.image = UIImage(data: NSData(contentsOfURL:NSURL(string: products[indexPath.row].picurl)!)!)
