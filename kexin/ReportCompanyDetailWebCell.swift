@@ -11,9 +11,9 @@ import WebKit
 
 class ReportCompanyDetailWebCell: UITableViewCell {
     
-    //@IBOutlet var labelName: UILabel!
-    //@IBOutlet var iButton: UIButton!
-    @IBOutlet var webView: WKWebView!
+    @IBOutlet var labelName: UILabel!
+    @IBOutlet var iButton: UIButton!
+    //@IBOutlet var webView: UIWebView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -13,13 +13,13 @@ import JSONJoy
 class HttpHandler {
 
 
-    func getCompanys(keywords:String, pageNum :Int) -> [Company]
+    func getCompanys(_ keywords:String, pageNum :Int) -> [Company]
     {
         var companys:[Company] = []
         do {
             //print("city is: \(get_result())")
             let params1 = ["keywords":keywords,"page":pageNum.description,"pageSize":"10"]
-            companys = try Companys(JSONDecoder("{\"companys\":" + get_result(url:"http://114.55.67.233:8080/kexin/enterprise/search", params: params1) + "}")).companys
+            companys = try Companys(JSONDecoder("{\"companys\":" + get_result("http://114.55.67.233:8080/kexin/enterprise/search", params: params1) + "}")).companys
             
           } catch {
             print("unable to parse the JSON")
@@ -27,13 +27,13 @@ class HttpHandler {
         return companys
     }
     
-    func getWarnings(keywords:String, pageNum :Int) -> [WarningInfo]
+    func getWarnings(_ keywords:String, pageNum :Int) -> [WarningInfo]
     {
         var warnings:[WarningInfo] = []
         do {
             //print("city is: \(get_result())")
             let params1 = ["keywords":keywords,"page":pageNum.description,"pageSize":"10"]
-            warnings = try WarningInfos(JSONDecoder("{\"warnings\":" + get_result(url:"http://114.55.67.233:8080/kexin/warings/search", params: params1) + "}")).warnings
+            warnings = try WarningInfos(JSONDecoder("{\"warnings\":" + get_result("http://114.55.67.233:8080/kexin/warings/search", params: params1) + "}")).warnings
             
         } catch {
             print("unable to parse the JSON")
@@ -41,13 +41,13 @@ class HttpHandler {
         return warnings
     }
     
-    func getCompanyDetails(id:String,record_no:String) -> CompanyDetail
+    func getCompanyDetails(_ id:String,record_no:String) -> CompanyDetail
     {
         var companys : CompanyDetail?
         do {
             //print("city is: \(get_result())")
             let params1 = ["id":id,"record_no":record_no]
-            companys = try CompanyDetail(JSONDecoder( get_result(url:"http://114.55.67.233:8080/kexin/enterprise/detail", params: params1)))
+            companys = try CompanyDetail(JSONDecoder( get_result("http://114.55.67.233:8080/kexin/enterprise/detail", params: params1)))
             
         } catch {
             print("unable to parse the JSON")
@@ -56,13 +56,13 @@ class HttpHandler {
     }
     
     
-    func getReportCompanyDetails(id:String) -> ReportCompanyDetail
+    func getReportCompanyDetails(_ id:String) -> ReportCompanyDetail
     {
         var companys : ReportCompanyDetail?
         do {
             //print("city is: \(get_result())")
             //let params1 = ["id":id]
-            companys = try ReportCompanyDetail(JSONDecoder( get_result(url:"http://114.55.67.233:8080/kexin/report-company/" + id, params: nil)))
+            companys = try ReportCompanyDetail(JSONDecoder( get_result("http://114.55.67.233:8080/kexin/report-company/" + id, params: nil)))
             
         } catch {
             print("unable to parse the JSON")
@@ -72,7 +72,7 @@ class HttpHandler {
     
     
     
-    func getProductDetails(id:String,userid:String) -> ProductDetail
+    func getProductDetails(_ id:String,userid:String) -> ProductDetail
     {
         var productDetail : ProductDetail?
         
@@ -80,7 +80,7 @@ class HttpHandler {
        
         do {
             
-            productDetail = try ProductDetail(JSONDecoder(get_result(url:"http://114.55.67.233:8080/kexin/search-product/"+id+"/"+userid, params: nil).replacingOccurrences(of: "\\n", with: "").replacingOccurrences(of: "\\t", with: "")))
+            productDetail = try ProductDetail(JSONDecoder(get_result("http://114.55.67.233:8080/kexin/search-product/"+id+"/"+userid, params: nil).replacingOccurrences(of: "\\n", with: "").replacingOccurrences(of: "\\t", with: "")))
             
         } catch {
             print("unable to parse the JSON")
@@ -94,7 +94,7 @@ class HttpHandler {
         do {
             //print("city is: \(get_result())")
             //let params1 = ["id":id,"record_no":record_no]
-            companys = try ReportCompanys(JSONDecoder( "{\"reportcompanys\":" + get_result(url:"http://114.55.67.233:8080/kexin/report-company", params: nil) + "}")).products
+            companys = try ReportCompanys(JSONDecoder( "{\"reportcompanys\":" + get_result("http://114.55.67.233:8080/kexin/report-company", params: nil) + "}")).products
             
         } catch {
             print("unable to parse the JSON")
@@ -103,14 +103,14 @@ class HttpHandler {
     }
 
     
-    func getProducts(keywords:String, pageNum :Int) -> [Product]
+    func getProducts(_ keywords:String, pageNum :Int) -> [Product]
     {
         var products:[Product] = []
         let params1 = ["productname":keywords,"page":pageNum.description,"pageSize":"10"]
         do {
             //print("city is: \(get_result())")
             
-            products = try Products(JSONDecoder("{\"products\":" + get_result(url:"http://114.55.67.233:8080/kexin/search-product", params: params1) + "}")).products
+            products = try Products(JSONDecoder("{\"products\":" + get_result("http://114.55.67.233:8080/kexin/search-product", params: params1) + "}")).products
             
         } catch {
             print("unable to parse the JSON")
@@ -119,7 +119,7 @@ class HttpHandler {
     }
 
 
-    func get_result(url:String,params:Dictionary<String, String>?)->String
+    func get_result(_ url:String,params:Dictionary<String, String>?)->String
     {
         var result:String? = ""
         print(url)

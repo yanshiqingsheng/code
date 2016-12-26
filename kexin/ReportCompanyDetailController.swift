@@ -24,7 +24,7 @@ class ReportCompanyDetailController : UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        reportCompanyDetail = reportCompanyHandler.getReportCompanyDetails(id: self.id!)
+        reportCompanyDetail = reportCompanyHandler.getReportCompanyDetails(self.id!)
         // Do any additional setup after loading the view, typically from a nib.
         self.tableView.estimatedRowHeight = 80.0
         self.tableView.rowHeight = UITableViewAutomaticDimension
@@ -78,17 +78,19 @@ class ReportCompanyDetailController : UITableViewController {
         }
         
     }
-    /*
-    @IBAction func startPlaying(sender: AnyObject) {
+    
+    @IBAction func startPlaying(_ sender: AnyObject) {
         
             do {
-                try audioPlayer = AVAudioPlayer(contentsOf: URL(string: "blob:http://114.55.67.233:8080/6cfef343-3d34-4bf5-b5f4-91026cabd4a6")!)
+                let url = URL(string: "blob:http://114.55.67.233:8080/6cfef343-3d34-4bf5-b5f4-91026cabd4a6")
+                let audioData:Data = try Data(contentsOf : url!)
+                try audioPlayer = AVAudioPlayer(data: audioData as Data)
                 audioPlayer.play()
                 print("play!!")
             } catch {
             }
         
-    }*/
+    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "Cell"
@@ -112,11 +114,10 @@ class ReportCompanyDetailController : UITableViewController {
         // Follow us section
         case 1:
                 let cell2 = tableView.dequeueReusableCell(withIdentifier: cellIdentifier2, for: indexPath) as! ReportCompanyDetailWebCell
-               // let url = URL(string: "http://www.appcoda.com/contact")
-               // let request = URLRequest(url: url!)
+                let url = URL(string: "blob:http://114.55.67.233:8080/6cfef343-3d34-4bf5-b5f4-91026cabd4a6")
+                let request = URLRequest(url: url!)
                 //cell?.contentView.
                 cell2.labelName.text = "视频"
-                
                 return cell2
         default: break
                 }

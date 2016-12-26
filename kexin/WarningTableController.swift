@@ -20,7 +20,7 @@ class WarningTableController : UITableViewController , UISearchResultsUpdating {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        warnings = warningsHandler.getWarnings(keywords: "", pageNum: pageNum)
+        warnings = warningsHandler.getWarnings("", pageNum: pageNum)
         searchwarnings = warnings
         self.tableView.estimatedRowHeight = 10.0
         self.tableView.rowHeight = UITableViewAutomaticDimension
@@ -40,8 +40,8 @@ class WarningTableController : UITableViewController , UISearchResultsUpdating {
     
     
     func setupRefresh(){
-        self.tableView.addHeaderWithCallback(callback: {
-            let tempcompanys = self.warningsHandler.getWarnings(keywords: "", pageNum: 1)
+        self.tableView.addHeaderWithCallback({
+            let tempcompanys = self.warningsHandler.getWarnings("", pageNum: 1)
             if(tempcompanys.count != 0)
             {
                 self.warnings = tempcompanys
@@ -59,10 +59,10 @@ class WarningTableController : UITableViewController , UISearchResultsUpdating {
         })
         
         
-        self.tableView.addFooterWithCallback(callback: {
+        self.tableView.addFooterWithCallback({
             
             self.pageNum = self.pageNum + 1
-            let tempcompanys = self.warningsHandler.getWarnings(keywords: "", pageNum: self.pageNum)
+            let tempcompanys = self.warningsHandler.getWarnings("", pageNum: self.pageNum)
             if(tempcompanys.count != 0)
             {
                 self.warnings.append(contentsOf: tempcompanys)
@@ -99,7 +99,7 @@ class WarningTableController : UITableViewController , UISearchResultsUpdating {
         }
         
     }
-    func getNilString(tmp:String?)->String
+    func getNilString(_ tmp:String?)->String
     {
         if tmp == nil
         {
@@ -119,7 +119,7 @@ class WarningTableController : UITableViewController , UISearchResultsUpdating {
         
         
         // Configure the cell...
-        cell.textLabel?.text = getNilString(tmp: com.title) + "\n发布单位：" + getNilString(tmp: com.publish_department) + "\n发布时间：" + getNilString(tmp: com.publish_time)
+        cell.textLabel?.text = getNilString(com.title) + "\n发布单位：" + getNilString(com.publish_department) + "\n发布时间：" + getNilString(com.publish_time)
         
         // Solution to the exercise
         //cell.imageView?.image = UIImage(named: companys[indexPath.row])
@@ -144,7 +144,7 @@ class WarningTableController : UITableViewController , UISearchResultsUpdating {
     */
     
     func filterContent(for searchText: String) {
-        searchwarnings = warningsHandler.getWarnings(keywords: searchText, pageNum: 1)
+        searchwarnings = warningsHandler.getWarnings(searchText, pageNum: 1)
     }
     
     func updateSearchResults(for searchController: UISearchController) {

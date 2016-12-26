@@ -22,7 +22,7 @@ class ReportCompanyController : UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        reportcompanys = companyHandler.getReportCompanys()
+        //reportcompanys = companyHandler.getReportCompanys()
         
         self.tableView.estimatedRowHeight = 10.0
         self.tableView.rowHeight = UITableViewAutomaticDimension
@@ -37,7 +37,7 @@ class ReportCompanyController : UITableViewController {
     
     
     func setupRefresh(){
-        self.tableView.addHeaderWithCallback(callback: {
+        self.tableView.addHeaderWithCallback({
             let tempcompanys = self.companyHandler.getReportCompanys()
             if(tempcompanys.count != 0)
             {

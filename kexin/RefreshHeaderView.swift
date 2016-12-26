@@ -14,7 +14,7 @@ class RefreshHeaderView: RefreshBaseView {
     }
     
     // 最后的更新时间
-    var lastUpdateTime:NSDate = NSDate(){
+    var lastUpdateTime:Date = Date(){
     willSet{
         
     }
@@ -39,9 +39,9 @@ class RefreshHeaderView: RefreshBaseView {
         self.addSubview(lastUpdateTimeLabel);
         
         if  (UserDefaults.standard.object(forKey: RefreshHeaderTimeKey as String) == nil)  {
-            self.lastUpdateTime = NSDate()
+            self.lastUpdateTime = Date()
         } else {
-          self.lastUpdateTime = UserDefaults.standard.object(forKey: RefreshHeaderTimeKey as String) as! NSDate
+          self.lastUpdateTime = (UserDefaults.standard.object(forKey: RefreshHeaderTimeKey as String) as! NSDate) as Date
         }
         self.updateTimeLabel()
     }
@@ -78,8 +78,8 @@ class RefreshHeaderView: RefreshBaseView {
         //更新时间字符串
         let calendar:NSCalendar = NSCalendar.current as NSCalendar
         let unitFlags:NSCalendar.Unit = [NSCalendar.Unit.year , NSCalendar.Unit.month , NSCalendar.Unit.day ,  NSCalendar.Unit.hour , NSCalendar.Unit.minute]
-        let cmp1:NSDateComponents = calendar.components(unitFlags, from:lastUpdateTime as Date) as NSDateComponents
-        let cmp2:NSDateComponents = calendar.components(unitFlags, from: NSDate() as Date) as NSDateComponents
+        let cmp1:DateComponents = (calendar.components(unitFlags, from:lastUpdateTime as Date) as NSDateComponents) as DateComponents
+        let cmp2:DateComponents = (calendar.components(unitFlags, from: Date() as Date) as NSDateComponents) as DateComponents
         let formatter:DateFormatter = DateFormatter()
         
         formatter.dateFormat = "yyyy-MM-dd HH:mm"
@@ -93,7 +93,7 @@ class RefreshHeaderView: RefreshBaseView {
         if (!self.isUserInteractionEnabled || self.isHidden){
             return
         }
-        if (self.State == RefreshState.Refreshing) {
+        if (self.State == RefreshState.refreshing) {
             return
         }
         if RefreshContentOffset.isEqual(to: keyPath!){
@@ -115,14 +115,14 @@ class RefreshHeaderView: RefreshBaseView {
         }
         if self.scrollView.isDragging{
             let normal2pullingOffsetY:CGFloat = happenOffsetY - self.frame.size.height
-            if  self.State == RefreshState.Normal && currentOffsetY < normal2pullingOffsetY{
-                self.State = RefreshState.Pulling
-            }else if self.State == RefreshState.Pulling && currentOffsetY >= normal2pullingOffsetY{
-                self.State = RefreshState.Normal
+            if  self.State == RefreshState.normal && currentOffsetY < normal2pullingOffsetY{
+                self.State = RefreshState.pulling
+            }else if self.State == RefreshState.pulling && currentOffsetY >= normal2pullingOffsetY{
+                self.State = RefreshState.normal
             }
             
-        } else if self.State == RefreshState.Pulling {
-            self.State = RefreshState.Refreshing
+        } else if self.State == RefreshState.pulling {
+            self.State = RefreshState.refreshing
         }
     }
     
@@ -133,15 +133,15 @@ class RefreshHeaderView: RefreshBaseView {
             return;
         }
         oldState = State
-        setState(newValue: newValue)
+        setState(newValue)
     }
     didSet{
         switch State{
-        case .Normal:
+        case .normal:
             self.statusLabel.text = RefreshHeaderPullToRefresh as String
-            if RefreshState.Refreshing == oldState {
+            if RefreshState.refreshing == oldState {
                 self.arrowImage.transform = CGAffineTransform.identity
-                self.lastUpdateTime = NSDate()
+                self.lastUpdateTime = Date()
                 UIView.animate(withDuration: RefreshSlowAnimationDuration, animations: {
                     var contentInset:UIEdgeInsets = self.scrollView.contentInset
                     contentInset.top = self.scrollViewOriginalInset.top
@@ -154,7 +154,7 @@ class RefreshHeaderView: RefreshBaseView {
                     })
             }
             break
-        case .Pulling:
+        case .pulling:
             self.statusLabel.text = RefreshHeaderReleaseToRefresh as String
             UIView.animate(withDuration: RefreshSlowAnimationDuration, animations: {
                  self.arrowImage.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI ))
@@ -163,7 +163,7 @@ class RefreshHeaderView: RefreshBaseView {
    
             
             break
-        case .Refreshing:
+        case .refreshing:
             self.statusLabel.text =  RefreshHeaderRefreshing as String;
             
             UIView.animate(withDuration: RefreshSlowAnimationDuration, animations: {
@@ -183,7 +183,7 @@ class RefreshHeaderView: RefreshBaseView {
     }
     }
     
-    func addState(state:RefreshState){
+    func addState(_ state:RefreshState){
         self.State = state
     }
 }

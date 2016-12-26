@@ -20,7 +20,7 @@ class CompanyTableViewController : UITableViewController , UISearchResultsUpdati
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        companys = companyHandler.getCompanys(keywords: "", pageNum: pageNum)
+        //companys = companyHandler.getCompanys(keywords: "", pageNum: pageNum)
         searchCompanys = companys
         self.tableView.estimatedRowHeight = 10.0
         self.tableView.rowHeight = UITableViewAutomaticDimension
@@ -40,8 +40,8 @@ class CompanyTableViewController : UITableViewController , UISearchResultsUpdati
     
     
     func setupRefresh(){
-        self.tableView.addHeaderWithCallback(callback: {
-            let tempcompanys = self.companyHandler.getCompanys(keywords: "", pageNum: 1)
+        self.tableView.addHeaderWithCallback({
+            let tempcompanys = self.companyHandler.getCompanys("", pageNum: 1)
             if(tempcompanys.count != 0)
             {
                 self.companys = tempcompanys
@@ -59,10 +59,10 @@ class CompanyTableViewController : UITableViewController , UISearchResultsUpdati
         })
         
         
-        self.tableView.addFooterWithCallback(callback: {
+        self.tableView.addFooterWithCallback({
            
             self.pageNum = self.pageNum + 1
-            let tempcompanys = self.companyHandler.getCompanys(keywords: "", pageNum: self.pageNum)
+            let tempcompanys = self.companyHandler.getCompanys("", pageNum: self.pageNum)
             if(tempcompanys.count != 0)
             {
                 self.companys.append(contentsOf: tempcompanys)
@@ -134,7 +134,7 @@ class CompanyTableViewController : UITableViewController , UISearchResultsUpdati
     
     
     func filterContent(for searchText: String) {
-        searchCompanys = companyHandler.getCompanys(keywords: searchText, pageNum: 1)
+        searchCompanys = companyHandler.getCompanys(searchText, pageNum: 1)
     }
     
     func updateSearchResults(for searchController: UISearchController) {

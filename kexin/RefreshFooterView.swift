@@ -51,7 +51,7 @@ class RefreshFooterView: RefreshBaseView {
         if RefreshContentSize.isEqual(to: keyPath!){
             adjustFrameWithContentSize()
         }else if RefreshContentOffset.isEqual(to: keyPath!) {
-            if self.State == RefreshState.Refreshing{
+            if self.State == RefreshState.refreshing{
                 return
             }
             adjustStateWithContentOffset()
@@ -67,13 +67,13 @@ class RefreshFooterView: RefreshBaseView {
         }
         if self.scrollView.isDragging {
             let normal2pullingOffsetY =  happenOffsetY + self.frame.size.height
-            if self.State == RefreshState.Normal && currentOffsetY > normal2pullingOffsetY {
-                self.State = RefreshState.Pulling;
-            } else if (self.State == RefreshState.Pulling && currentOffsetY <= normal2pullingOffsetY) {
-                self.State = RefreshState.Normal;
+            if self.State == RefreshState.normal && currentOffsetY > normal2pullingOffsetY {
+                self.State = RefreshState.pulling;
+            } else if (self.State == RefreshState.pulling && currentOffsetY <= normal2pullingOffsetY) {
+                self.State = RefreshState.normal;
             }
-        } else if (self.State == RefreshState.Pulling) {
-            self.State = RefreshState.Refreshing
+        } else if (self.State == RefreshState.pulling) {
+            self.State = RefreshState.refreshing
         }
     }
 
@@ -85,13 +85,13 @@ class RefreshFooterView: RefreshBaseView {
             return;
         }
         oldState = State
-        setState(newValue: newValue)
+        setState(newValue)
     }
     didSet{
         switch State{
-        case .Normal:
+        case .normal:
             self.statusLabel.text = RefreshFooterPullToRefresh as String;
-            if (RefreshState.Refreshing == oldState) {
+            if (RefreshState.refreshing == oldState) {
                 self.arrowImage.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI))
                 UIView.animate(withDuration: RefreshSlowAnimationDuration, animations: {
                     self.scrollView.contentInset.bottom = self.scrollViewOriginalInset.bottom
@@ -103,20 +103,20 @@ class RefreshFooterView: RefreshBaseView {
             }
             let deltaH:CGFloat = self.heightForContentBreakView()
             let currentCount:Int = self.totalDataCountInScrollView()
-            if (RefreshState.Refreshing == oldState && deltaH > 0  && currentCount != self.lastRefreshCount) {
+            if (RefreshState.refreshing == oldState && deltaH > 0  && currentCount != self.lastRefreshCount) {
                 var offset:CGPoint = self.scrollView.contentOffset;
                 offset.y = self.scrollView.contentOffset.y
                 self.scrollView.contentOffset = offset;
             }
             
             break
-        case .Pulling:
+        case .pulling:
             self.statusLabel.text = RefreshFooterReleaseToRefresh as String
             UIView.animate(withDuration: RefreshSlowAnimationDuration, animations: {
                self.arrowImage.transform = CGAffineTransform.identity
                 })
             break
-        case .Refreshing:
+        case .refreshing:
             self.statusLabel.text = RefreshFooterReleaseToRefresh as String;
             self.lastRefreshCount = self.totalDataCountInScrollView();
             UIView.animate(withDuration: RefreshSlowAnimationDuration, animations: {
@@ -178,7 +178,7 @@ class RefreshFooterView: RefreshBaseView {
     }
     
     
-     func addState(state:RefreshState){
+     func addState(_ state:RefreshState){
         self.State = state
     }
     

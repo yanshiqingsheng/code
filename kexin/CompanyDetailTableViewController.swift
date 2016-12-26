@@ -18,7 +18,7 @@ class CompanyDetailTableViewController : UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        companyDetail = companyDetailHandler.getCompanyDetails(id:id!,record_no:record_no!)
+        companyDetail = companyDetailHandler.getCompanyDetails(id!,record_no:record_no!)
         self.tableView.estimatedRowHeight = 10.0
         self.tableView.rowHeight = UITableViewAutomaticDimension
         //print(id)
@@ -35,7 +35,7 @@ class CompanyDetailTableViewController : UITableViewController {
         return 1
     }
     
-    func getNilString(tmp:String?)->String
+    func getNilString(_ tmp:String?)->String
     {
         if tmp == nil
         {
@@ -50,24 +50,24 @@ class CompanyDetailTableViewController : UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "Cell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-        let tmp1: String = getNilString(tmp: companyDetail!.com_name)
+        let tmp1: String = getNilString(companyDetail!.com_name)
                            + "\n\n基本信息"
-                           + "\n企业类型：                    " + getNilString(tmp: companyDetail!.role_type)
-                           + "\n所在地区：                    " + getNilString(tmp: companyDetail!.address)
-                           + "\n是否有直接进口业务："             + getNilString(tmp: companyDetail!.is_manu_import)
-        let tmp2: String =   "\n许可范围：                "     + getNilString(tmp: companyDetail!.real_business_scope)
-                           + "\n是否有门户网站：        "        + getNilString(tmp: companyDetail!.have_site?.description)
+                           + "\n企业类型：                    " + getNilString(companyDetail!.role_type)
+                           + "\n所在地区：                    " + getNilString(companyDetail!.address)
+                           + "\n是否有直接进口业务："             + getNilString(companyDetail!.is_manu_import)
+        let tmp2: String =   "\n许可范围：                "     + getNilString(companyDetail!.real_business_scope)
+                           + "\n是否有门户网站：        "        + getNilString(companyDetail!.have_site?.description)
                            + "\n\n工商注册信息"
-                           + "\n工商注册号：                "     + getNilString(tmp: companyDetail!.reg_on)
-                           + "\n法人代表：                    "  + getNilString(tmp: companyDetail!.law_person)
-                           + "\n法人代表联系电话：  " + getNilString(tmp: companyDetail!.lp_phone)
-                           + "\n注册资本：                    " + getNilString(tmp: companyDetail!.reg_capital)
-                           + "\n成立日期：                    " + getNilString(tmp: companyDetail!.found_date)
-                           + "\n年报公示状态：             " + getNilString(tmp: companyDetail!.annual_check)
-                           + "\n注册地址：                    " + getNilString(tmp: companyDetail!.reg_address)
-                           + "\n登记机关：                    " + getNilString(tmp: companyDetail!.reg_branch)
-                           + "\n经营期限：                    " + getNilString(tmp: companyDetail!.valid_period)
-                           + "\n工商执照扫描件：      " + getNilString(tmp: companyDetail!.reg_certificate)
+                           + "\n工商注册号：                "     + getNilString(companyDetail!.reg_on)
+                           + "\n法人代表：                    "  + getNilString(companyDetail!.law_person)
+                           + "\n法人代表联系电话：  " + getNilString(companyDetail!.lp_phone)
+                           + "\n注册资本：                    " + getNilString(companyDetail!.reg_capital)
+                           + "\n成立日期：                    " + getNilString(companyDetail!.found_date)
+                           + "\n年报公示状态：             " + getNilString(companyDetail!.annual_check)
+                           + "\n注册地址：                    " + getNilString(companyDetail!.reg_address)
+                           + "\n登记机关：                    " + getNilString(companyDetail!.reg_branch)
+                           + "\n经营期限：                    " + getNilString(companyDetail!.valid_period)
+                           + "\n工商执照扫描件：      " + getNilString(companyDetail!.reg_certificate)
         // Configure the cell...
         cell.textLabel?.text =  tmp1 + tmp2
         
