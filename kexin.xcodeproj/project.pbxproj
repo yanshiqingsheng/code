@@ -19,6 +19,7 @@
 		653A37C21DC0DF13006BAB9F /* ReportCompanyDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A37C11DC0DF13006BAB9F /* ReportCompanyDetailController.swift */; };
 		653A37C41DC0DFD3006BAB9F /* ReportCompanyDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A37C31DC0DFD3006BAB9F /* ReportCompanyDetail.swift */; };
 		653A37C61DC0E9B7006BAB9F /* ReportCompanyDetailWebCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A37C51DC0E9B7006BAB9F /* ReportCompanyDetailWebCell.swift */; };
+		655ECE3F1E1A414400DF596F /* LoginTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655ECE3E1E1A414400DF596F /* LoginTableViewController.swift */; };
 		657486A51DA6176D009B0B07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657486A41DA6176D009B0B07 /* AppDelegate.swift */; };
 		657486A71DA6176D009B0B07 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657486A61DA6176D009B0B07 /* ViewController.swift */; };
 		657486AA1DA6176D009B0B07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 657486A81DA6176D009B0B07 /* Main.storyboard */; };
@@ -273,6 +274,7 @@
 		653A37C11DC0DF13006BAB9F /* ReportCompanyDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportCompanyDetailController.swift; sourceTree = "<group>"; };
 		653A37C31DC0DFD3006BAB9F /* ReportCompanyDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportCompanyDetail.swift; sourceTree = "<group>"; };
 		653A37C51DC0E9B7006BAB9F /* ReportCompanyDetailWebCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportCompanyDetailWebCell.swift; sourceTree = "<group>"; };
+		655ECE3E1E1A414400DF596F /* LoginTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTableViewController.swift; sourceTree = "<group>"; };
 		657486A11DA6176D009B0B07 /* kexin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kexin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		657486A41DA6176D009B0B07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		657486A61DA6176D009B0B07 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -421,6 +423,7 @@
 				657486FD1DAA741B009B0B07 /* JSONJoy.xcodeproj */,
 				657486FB1DAA70FD009B0B07 /* Company.swift */,
 				650E13F51DB7BC350063BC40 /* kexin-Bridging-Header.h */,
+				655ECE3E1E1A414400DF596F /* LoginTableViewController.swift */,
 			);
 			path = kexin;
 			sourceTree = "<group>";
@@ -853,6 +856,7 @@
 				65B7755D1DB7D74200FD76AB /* Refresh.swift in Sources */,
 				653A37BE1DC0DAB7006BAB9F /* ReportCompanyController.swift in Sources */,
 				653A37C21DC0DF13006BAB9F /* ReportCompanyDetailController.swift in Sources */,
+				655ECE3F1E1A414400DF596F /* LoginTableViewController.swift in Sources */,
 				653A37A21DC0BFD4006BAB9F /* ProductDetailModule.swift in Sources */,
 				65B775641DBB88F800FD76AB /* ProductDetail.swift in Sources */,
 				65B775601DB7D74200FD76AB /* RefreshFooterView.swift in Sources */,

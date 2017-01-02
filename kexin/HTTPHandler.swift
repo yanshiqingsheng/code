@@ -13,6 +13,24 @@ import JSONJoy
 class HttpHandler {
 
 
+    
+    func ifLogin()  -> String
+    {
+         return "测试用户一"
+    
+    }
+    func getLogOutList()
+    {
+        
+        
+    }
+    func getFromLogin(id:String, pw: String)->Bool{
+         var result = false
+        
+         return result
+    }
+    
+    
     func getCompanys(_ keywords:String, pageNum :Int) -> [Company]
     {
         var companys:[Company] = []
