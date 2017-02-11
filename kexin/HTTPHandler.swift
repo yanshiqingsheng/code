@@ -37,7 +37,7 @@ class HttpHandler {
         do {
             //print("city is: \(get_result())")
             let params1 = ["keywords":keywords,"page":pageNum.description,"pageSize":"10"]
-            companys = try Companys(JSONDecoder("{\"companys\":" + get_result("http://114.55.67.233:8080/kexin/enterprise/search", params: params1) + "}")).companys
+            companys = try Companys(JSONDecoder("{\"companys\":" + get_result("http://android.ecdata.org.cn:9080/enterprise/search", params: params1) + "}")).companys
             
           } catch {
             print("unable to parse the JSON")
@@ -51,7 +51,7 @@ class HttpHandler {
         do {
             //print("city is: \(get_result())")
             let params1 = ["keywords":keywords,"page":pageNum.description,"pageSize":"10"]
-            warnings = try WarningInfos(JSONDecoder("{\"warnings\":" + get_result("http://114.55.67.233:8080/kexin/warings/search", params: params1) + "}")).warnings
+            warnings = try WarningInfos(JSONDecoder("{\"warnings\":" + get_result("http://android.ecdata.org.cn:9080/warings/search", params: params1) + "}")).warnings
             
         } catch {
             print("unable to parse the JSON")
@@ -65,7 +65,7 @@ class HttpHandler {
         do {
             //print("city is: \(get_result())")
             let params1 = ["id":id,"record_no":record_no]
-            companys = try CompanyDetail(JSONDecoder( get_result("http://114.55.67.233:8080/kexin/enterprise/detail", params: params1)))
+            companys = try CompanyDetail(JSONDecoder( get_result("http://android.ecdata.org.cn:9080/enterprise/detail", params: params1)))
             
         } catch {
             print("unable to parse the JSON")
@@ -80,7 +80,7 @@ class HttpHandler {
         do {
             //print("city is: \(get_result())")
             //let params1 = ["id":id]
-            companys = try ReportCompanyDetail(JSONDecoder( get_result("http://114.55.67.233:8080/kexin/report-company/" + id, params: nil)))
+            companys = try ReportCompanyDetail(JSONDecoder( get_result("http://android.ecdata.org.cn:9080/report-company/" + id, params: nil)))
             
         } catch {
             print("unable to parse the JSON")
@@ -98,7 +98,7 @@ class HttpHandler {
        
         do {
             
-            productDetail = try ProductDetail(JSONDecoder(get_result("http://114.55.67.233:8080/kexin/search-product/"+id+"/"+userid, params: nil).replacingOccurrences(of: "\\n", with: "").replacingOccurrences(of: "\\t", with: "")))
+            productDetail = try ProductDetail(JSONDecoder(get_result("http://android.ecdata.org.cn:9080/search-product/"+id+"/"+userid, params: nil).replacingOccurrences(of: "\\n", with: "").replacingOccurrences(of: "\\t", with: "")))
             
         } catch {
             print("unable to parse the JSON")
@@ -112,7 +112,7 @@ class HttpHandler {
         do {
             //print("city is: \(get_result())")
             //let params1 = ["id":id,"record_no":record_no]
-            companys = try ReportCompanys(JSONDecoder( "{\"reportcompanys\":" + get_result("http://114.55.67.233:8080/kexin/report-company", params: nil) + "}")).products
+            companys = try ReportCompanys(JSONDecoder( "{\"reportcompanys\":" + get_result("http://android.ecdata.org.cn:9080/report-company", params: nil) + "}")).products
             
         } catch {
             print("unable to parse the JSON")
@@ -128,7 +128,7 @@ class HttpHandler {
         do {
             //print("city is: \(get_result())")
             
-            products = try Products(JSONDecoder("{\"products\":" + get_result("http://114.55.67.233:8080/kexin/search-product", params: params1) + "}")).products
+            products = try Products(JSONDecoder("{\"products\":" + get_result("http://android.ecdata.org.cn:9080/search-product", params: params1) + "}")).products
             
         } catch {
             print("unable to parse the JSON")
