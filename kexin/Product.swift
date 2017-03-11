@@ -16,13 +16,11 @@ struct Product: JSONJoy {
     let picurl: String?
     let productname: String?
     init(_ decoder: JSONDecoder) {
-        companyname = decoder["companyname"].string
-        evaluation  = decoder["evaluation"].string
-        id = decoder["id"].string
-        picurl = decoder["picurl"].string
-        productname = decoder["productname"].string
-        
-        
+        companyname = decoder["companyname"].string == nil ? "" : decoder["companyname"].string
+        evaluation  = decoder["evaluation"].string == nil ? "" : decoder["evaluation"].string
+        id = decoder["id"].string == nil ? "" : decoder["id"].string
+        picurl = decoder["picurl"].string == nil ? "" : decoder["picurl"].string
+        productname = decoder["productname"].string == nil ? "" : decoder["productname"].string
     }
 }
 

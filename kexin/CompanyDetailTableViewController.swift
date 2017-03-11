@@ -11,16 +11,22 @@ import UIKit
 class CompanyDetailTableViewController : UITableViewController {
     
     var companyDetail : CompanyDetail?
-    let companyDetailHandler = HttpHandler()
     var id : String?
     var record_no : String?
+    var isFavorite : Bool?
     
+    @IBOutlet weak var doFavoriteButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        companyDetail = companyDetailHandler.getCompanyDetails(id!,record_no:record_no!)
+        companyDetail = HttpHandler.getCompanyDetails(id!,record_no:record_no!)
         self.tableView.estimatedRowHeight = 10.0
         self.tableView.rowHeight = UITableViewAutomaticDimension
+        if isFavorite! {
+            doFavoriteButton.setTitle("取消收藏", for: .normal)
+        }else{
+            doFavoriteButton.setTitle("收藏", for: .normal)
+        }
         //print(id)
     }
     
@@ -34,6 +40,14 @@ class CompanyDetailTableViewController : UITableViewController {
         // Return the number of rows in the section.
         return 1
     }
+    
+    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "reportKnownCompany" {
+            let destinationController = segue.destination as! ReportKnownComanyTableViewController
+            destinationController.companyId=getNilString(id)
+            destinationController.companyName=getNilString(companyDetail?.com_name)
+        }
+    }*/
     
     func getNilString(_ tmp:String?)->String
     {
@@ -78,6 +92,17 @@ class CompanyDetailTableViewController : UITableViewController {
         // cell.imageView?.image = UIImage(named: "restaurant")
         
         return cell
+    }
+    @IBAction func doFavorite(_ sender: Any) {
+        if !isFavorite! {
+            doFavoriteButton.isEnabled=false
+            let favoriteResult=HttpHandler.favoriteCompany(id!)
+            if favoriteResult {
+                doFavoriteButton.setTitle("取消收藏", for: .normal)
+            }else{
+            }
+            doFavoriteButton.isEnabled=true
+        }
     }
     
     

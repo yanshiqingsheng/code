@@ -16,15 +16,14 @@ struct Company: JSONJoy {
     let reg_address: String?
     let product_num: String?
     let eid: String?
-   
+    
     init(_ decoder: JSONDecoder) {
-         record_no = decoder["record_no"].string
-         com_name  = decoder["com_name"].string
-         role_type = decoder["role_type"].string
-         reg_address = decoder["reg_address"].string
-         product_num = decoder["product_num"].string
-         eid = decoder["eid"].string
-     
+        record_no = decoder["record_no"].string == nil ? "" : decoder["record_no"].string
+        com_name  = decoder["com_name"].string == nil ? "" : decoder["com_name"].string
+        role_type = decoder["role_type"].string == nil ? "" : decoder["role_type"].string
+        reg_address = decoder["reg_address"].string == nil ? "" : decoder["reg_address"].string
+        product_num = decoder["product_num"].string == nil ? "" : decoder["product_num"].string
+        eid = decoder["eid"].string == nil ? "" : decoder["eid"].string
     }
 }
 
@@ -35,7 +34,7 @@ struct Companys: JSONJoy {
             else {
                 throw JSONError.wrongType
                 
-            }
+        }
         
         var collect = [Company]()
         for addrDecoder in coms {

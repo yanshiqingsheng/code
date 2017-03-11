@@ -20,7 +20,7 @@ class WarningTableController : UITableViewController , UISearchResultsUpdating {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        warnings = warningsHandler.getWarnings("", pageNum: pageNum)
+        warnings = HttpHandler.getWarnings("", pageNum: pageNum)
         searchwarnings = warnings
         self.tableView.estimatedRowHeight = 10.0
         self.tableView.rowHeight = UITableViewAutomaticDimension
@@ -41,7 +41,7 @@ class WarningTableController : UITableViewController , UISearchResultsUpdating {
     
     func setupRefresh(){
         self.tableView.addHeaderWithCallback({
-            let tempcompanys = self.warningsHandler.getWarnings("", pageNum: 1)
+            let tempcompanys = HttpHandler.getWarnings("", pageNum: 1)
             if(tempcompanys.count != 0)
             {
                 self.warnings = tempcompanys
@@ -62,7 +62,7 @@ class WarningTableController : UITableViewController , UISearchResultsUpdating {
         self.tableView.addFooterWithCallback({
             
             self.pageNum = self.pageNum + 1
-            let tempcompanys = self.warningsHandler.getWarnings("", pageNum: self.pageNum)
+            let tempcompanys = HttpHandler.getWarnings("", pageNum: self.pageNum)
             if(tempcompanys.count != 0)
             {
                 self.warnings.append(contentsOf: tempcompanys)
@@ -144,7 +144,7 @@ class WarningTableController : UITableViewController , UISearchResultsUpdating {
     */
     
     func filterContent(for searchText: String) {
-        searchwarnings = warningsHandler.getWarnings(searchText, pageNum: 1)
+        searchwarnings = HttpHandler.getWarnings(searchText, pageNum: 1)
     }
     
     func updateSearchResults(for searchController: UISearchController) {

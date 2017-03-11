@@ -21,7 +21,7 @@ class ProductTableViewController : UITableViewController , UISearchResultsUpdati
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        products = productHandler.getProducts("", pageNum: pageNum)
+        products = HttpHandler.getProducts("", pageNum: pageNum)
         self.tableView.estimatedRowHeight = 80.0
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
@@ -39,7 +39,7 @@ class ProductTableViewController : UITableViewController , UISearchResultsUpdati
     
     func setupRefresh(){
         self.tableView.addHeaderWithCallback({
-            let tempproducts = self.productHandler.getProducts("", pageNum: self.pageNum)
+            let tempproducts = HttpHandler.getProducts("", pageNum: self.pageNum)
             if(tempproducts.count != 0)
             {
                 self.products = tempproducts
@@ -60,7 +60,7 @@ class ProductTableViewController : UITableViewController , UISearchResultsUpdati
         self.tableView.addFooterWithCallback({
             
             self.pageNum = self.pageNum + 1
-            let tempproducts = self.productHandler.getProducts("", pageNum: self.pageNum)
+            let tempproducts = HttpHandler.getProducts("", pageNum: self.pageNum)
             if(tempproducts.count != 0)
             {
                 self.products.append(contentsOf: tempproducts)
@@ -133,7 +133,7 @@ class ProductTableViewController : UITableViewController , UISearchResultsUpdati
     
     
     func filterContent(for searchText: String) {
-        searchProducts = productHandler.getProducts(searchText, pageNum: 1)
+        searchProducts = HttpHandler.getProducts(searchText, pageNum: 1)
     }
     
     func updateSearchResults(for searchController: UISearchController) {

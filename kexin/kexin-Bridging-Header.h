@@ -4,3 +4,5 @@
 
 
 //#import "UIImageView+WebCache.h"
+
+#import <CommonCrypto/CommonDigest.h>

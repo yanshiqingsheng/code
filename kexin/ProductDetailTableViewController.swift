@@ -25,7 +25,7 @@ class ProductDetailTableViewController : UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        productDetail = productDetailHandler.getProductDetails(self.id!, userid: self.userid!)
+        productDetail = HttpHandler.getProductDetails(self.id!, userid: self.userid!)
         // Do any additional setup after loading the view, typically from a nib.
         self.tableView.estimatedRowHeight = 80.0
         self.tableView.rowHeight = UITableViewAutomaticDimension

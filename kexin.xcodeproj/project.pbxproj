@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		1A6370DF657A414A11912C8E /* Pods_kexin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 440E33504F43B3AA078F237A /* Pods_kexin.framework */; };
 		56ACABD36C1D8219AD36DC16 /* Pods_kexinTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B9E21C242A594F0E0375F6A /* Pods_kexinTests.framework */; };
+		64BAF03D1E6C122100991830 /* StringMd5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BAF03C1E6C122100991830 /* StringMd5.swift */; };
+		64BAF03F1E6C15C800991830 /* HTTPResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BAF03E1E6C15C800991830 /* HTTPResponse.swift */; };
+		64BAF0411E6C2FF300991830 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BAF0401E6C2FF300991830 /* User.swift */; };
+		64D59F241E4F4E1100A0BA97 /* ReportUnknownCompanyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D59F231E4F4E1100A0BA97 /* ReportUnknownCompanyTableViewController.swift */; };
+		64D59F261E50011B00A0BA97 /* ReportKnownComanyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D59F251E50011B00A0BA97 /* ReportKnownComanyTableViewController.swift */; };
+		64D59F281E50083E00A0BA97 /* SCCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D59F271E50083E00A0BA97 /* SCCamera.swift */; };
 		650E13C91DAFB7FF0063BC40 /* CompanyDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650E13C81DAFB7FF0063BC40 /* CompanyDetail.swift */; };
 		650E13D91DAFBA1E0063BC40 /* CertificateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650E13D81DAFBA1E0063BC40 /* CertificateModel.swift */; };
 		650E13DD1DAFCF390063BC40 /* CompanyDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650E13DC1DAFCF390063BC40 /* CompanyDetailTableViewController.swift */; };
@@ -32,22 +38,22 @@
 		657486C81DA6176D009B0B07 /* kexinUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657486C71DA6176D009B0B07 /* kexinUITests.swift */; };
 		657486DC1DAA68A5009B0B07 /* CompanyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657486DB1DAA68A5009B0B07 /* CompanyTableViewController.swift */; };
 		657486F61DAA6F0D009B0B07 /* HTTPHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657486F51DAA6F0D009B0B07 /* HTTPHandler.swift */; };
-		657486F71DAA6FCA009B0B07 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 657486E81DAA6D57009B0B07 /* SwiftHTTP.framework */; };
-		657486F81DAA6FCA009B0B07 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 657486EC1DAA6D57009B0B07 /* SwiftHTTP.framework */; };
-		657486F91DAA6FCA009B0B07 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 657486F01DAA6D57009B0B07 /* SwiftHTTP.framework */; };
-		657486FA1DAA6FCA009B0B07 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 657486F41DAA6D57009B0B07 /* SwiftHTTP.framework */; };
+		657486F71DAA6FCA009B0B07 /* SwiftHTTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 657486E81DAA6D57009B0B07 /* SwiftHTTP.framework */; };
+		657486F81DAA6FCA009B0B07 /* SwiftHTTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 657486EC1DAA6D57009B0B07 /* SwiftHTTP.framework */; };
+		657486F91DAA6FCA009B0B07 /* SwiftHTTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 657486F01DAA6D57009B0B07 /* SwiftHTTP.framework */; };
+		657486FA1DAA6FCA009B0B07 /* SwiftHTTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 657486F41DAA6D57009B0B07 /* SwiftHTTP.framework */; };
 		657486FC1DAA70FD009B0B07 /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657486FB1DAA70FD009B0B07 /* Company.swift */; };
-		657487151DAA7423009B0B07 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 657487081DAA741B009B0B07 /* JSONJoy.framework */; };
-		657487161DAA7423009B0B07 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 6574870C1DAA741B009B0B07 /* JSONJoy.framework */; };
-		657487171DAA7423009B0B07 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 657487101DAA741B009B0B07 /* JSONJoy.framework */; };
-		657487181DAA7423009B0B07 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 657487141DAA741B009B0B07 /* JSONJoy.framework */; };
+		657487151DAA7423009B0B07 /* JSONJoy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 657487081DAA741B009B0B07 /* JSONJoy.framework */; };
+		657487161DAA7423009B0B07 /* JSONJoy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6574870C1DAA741B009B0B07 /* JSONJoy.framework */; };
+		657487171DAA7423009B0B07 /* JSONJoy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 657487101DAA741B009B0B07 /* JSONJoy.framework */; };
+		657487181DAA7423009B0B07 /* JSONJoy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 657487141DAA741B009B0B07 /* JSONJoy.framework */; };
 		6574871A1DAD14D6009B0B07 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657487191DAD14D6009B0B07 /* Product.swift */; };
 		6574871C1DAD15B6009B0B07 /* ProductTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6574871B1DAD15B6009B0B07 /* ProductTableViewController.swift */; };
 		6574871E1DAD288D009B0B07 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6574871D1DAD288D009B0B07 /* ProductCell.swift */; };
-		65B775481DB7CBDC00FD76AB /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B775311DB7CBD500FD76AB /* Kingfisher.framework */; };
-		65B775491DB7CBDC00FD76AB /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B775331DB7CBD500FD76AB /* Kingfisher.framework */; };
-		65B7754A1DB7CBDC00FD76AB /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B775351DB7CBD500FD76AB /* Kingfisher.framework */; };
-		65B7754B1DB7CBDC00FD76AB /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B775371DB7CBD500FD76AB /* Kingfisher.framework */; };
+		65B775481DB7CBDC00FD76AB /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B775311DB7CBD500FD76AB /* Kingfisher.framework */; };
+		65B775491DB7CBDC00FD76AB /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B775331DB7CBD500FD76AB /* Kingfisher.framework */; };
+		65B7754A1DB7CBDC00FD76AB /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B775351DB7CBD500FD76AB /* Kingfisher.framework */; };
+		65B7754B1DB7CBDC00FD76AB /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B775371DB7CBD500FD76AB /* Kingfisher.framework */; };
 		65B7755C1DB7D74200FD76AB /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65B775551DB7D74200FD76AB /* arrow@2x.png */; };
 		65B7755D1DB7D74200FD76AB /* Refresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B775561DB7D74200FD76AB /* Refresh.swift */; };
 		65B7755E1DB7D74200FD76AB /* RefreshBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B775571DB7D74200FD76AB /* RefreshBaseView.swift */; };
@@ -267,6 +273,12 @@
 		440E33504F43B3AA078F237A /* Pods_kexin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_kexin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CEF3A250B2D1920C72235FC /* Pods-kexinTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kexinTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-kexinTests/Pods-kexinTests.release.xcconfig"; sourceTree = "<group>"; };
 		629CC2E007CFCF9F9D451A72 /* Pods-kexinUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kexinUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-kexinUITests/Pods-kexinUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		64BAF03C1E6C122100991830 /* StringMd5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringMd5.swift; sourceTree = "<group>"; };
+		64BAF03E1E6C15C800991830 /* HTTPResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPResponse.swift; sourceTree = "<group>"; };
+		64BAF0401E6C2FF300991830 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		64D59F231E4F4E1100A0BA97 /* ReportUnknownCompanyTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportUnknownCompanyTableViewController.swift; sourceTree = "<group>"; };
+		64D59F251E50011B00A0BA97 /* ReportKnownComanyTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportKnownComanyTableViewController.swift; sourceTree = "<group>"; };
+		64D59F271E50083E00A0BA97 /* SCCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCCamera.swift; sourceTree = "<group>"; };
 		650E13C81DAFB7FF0063BC40 /* CompanyDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyDetail.swift; sourceTree = "<group>"; };
 		650E13D81DAFBA1E0063BC40 /* CertificateModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CertificateModel.swift; sourceTree = "<group>"; };
 		650E13DC1DAFCF390063BC40 /* CompanyDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyDetailTableViewController.swift; sourceTree = "<group>"; };
@@ -329,19 +341,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65B775481DB7CBDC00FD76AB /* ReferenceProxy in Frameworks */,
-				65B775491DB7CBDC00FD76AB /* ReferenceProxy in Frameworks */,
-				65B7754A1DB7CBDC00FD76AB /* ReferenceProxy in Frameworks */,
-				65B7754B1DB7CBDC00FD76AB /* ReferenceProxy in Frameworks */,
+				65B775481DB7CBDC00FD76AB /* Kingfisher.framework in Frameworks */,
+				65B775491DB7CBDC00FD76AB /* Kingfisher.framework in Frameworks */,
+				65B7754A1DB7CBDC00FD76AB /* Kingfisher.framework in Frameworks */,
+				65B7754B1DB7CBDC00FD76AB /* Kingfisher.framework in Frameworks */,
 				650E13FF1DB7BE0F0063BC40 /* ImageIO.framework in Frameworks */,
-				657487151DAA7423009B0B07 /* ReferenceProxy in Frameworks */,
-				657487161DAA7423009B0B07 /* ReferenceProxy in Frameworks */,
-				657487171DAA7423009B0B07 /* ReferenceProxy in Frameworks */,
-				657487181DAA7423009B0B07 /* ReferenceProxy in Frameworks */,
-				657486F71DAA6FCA009B0B07 /* ReferenceProxy in Frameworks */,
-				657486F81DAA6FCA009B0B07 /* ReferenceProxy in Frameworks */,
-				657486F91DAA6FCA009B0B07 /* ReferenceProxy in Frameworks */,
-				657486FA1DAA6FCA009B0B07 /* ReferenceProxy in Frameworks */,
+				657487151DAA7423009B0B07 /* JSONJoy.framework in Frameworks */,
+				657487161DAA7423009B0B07 /* JSONJoy.framework in Frameworks */,
+				657487171DAA7423009B0B07 /* JSONJoy.framework in Frameworks */,
+				657487181DAA7423009B0B07 /* JSONJoy.framework in Frameworks */,
+				657486F71DAA6FCA009B0B07 /* SwiftHTTP.framework in Frameworks */,
+				657486F81DAA6FCA009B0B07 /* SwiftHTTP.framework in Frameworks */,
+				657486F91DAA6FCA009B0B07 /* SwiftHTTP.framework in Frameworks */,
+				657486FA1DAA6FCA009B0B07 /* SwiftHTTP.framework in Frameworks */,
 				1A6370DF657A414A11912C8E /* Pods_kexin.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -422,6 +434,7 @@
 				650E13F71DB7BC360063BC40 /* OCChannel.m */,
 				657486DD1DAA6D57009B0B07 /* SwiftHTTP.xcodeproj */,
 				657486A81DA6176D009B0B07 /* Main.storyboard */,
+				64D59F231E4F4E1100A0BA97 /* ReportUnknownCompanyTableViewController.swift */,
 				653A37C11DC0DF13006BAB9F /* ReportCompanyDetailController.swift */,
 				653A37C51DC0E9B7006BAB9F /* ReportCompanyDetailWebCell.swift */,
 				653A37C31DC0DFD3006BAB9F /* ReportCompanyDetail.swift */,
@@ -443,6 +456,11 @@
 				657486FB1DAA70FD009B0B07 /* Company.swift */,
 				650E13F51DB7BC350063BC40 /* kexin-Bridging-Header.h */,
 				655ECE3E1E1A414400DF596F /* LoginTableViewController.swift */,
+				64D59F251E50011B00A0BA97 /* ReportKnownComanyTableViewController.swift */,
+				64D59F271E50083E00A0BA97 /* SCCamera.swift */,
+				64BAF03C1E6C122100991830 /* StringMd5.swift */,
+				64BAF03E1E6C15C800991830 /* HTTPResponse.swift */,
+				64BAF0401E6C2FF300991830 /* User.swift */,
 			);
 			path = kexin;
 			sourceTree = "<group>";
@@ -602,7 +620,7 @@
 				TargetAttributes = {
 					657486A01DA6176D009B0B07 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = HA98SF97FL;
+						DevelopmentTeam = 2636298WH8;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
@@ -1012,6 +1030,7 @@
 			files = (
 				65B775661DBB8B1300FD76AB /* ProductDetailArrayList.swift in Sources */,
 				657486F61DAA6F0D009B0B07 /* HTTPHandler.swift in Sources */,
+				64BAF03F1E6C15C800991830 /* HTTPResponse.swift in Sources */,
 				65B775611DB7D74200FD76AB /* RefreshHeaderView.swift in Sources */,
 				657486A71DA6176D009B0B07 /* ViewController.swift in Sources */,
 				653A37C41DC0DFD3006BAB9F /* ReportCompanyDetail.swift in Sources */,
@@ -1021,11 +1040,13 @@
 				650E13DF1DB7B4DF0063BC40 /* ProductDetailTableViewController.swift in Sources */,
 				65B7755E1DB7D74200FD76AB /* RefreshBaseView.swift in Sources */,
 				653A37C01DC0DB7F006BAB9F /* ReportCompany.swift in Sources */,
+				64BAF03D1E6C122100991830 /* StringMd5.swift in Sources */,
 				650E13DD1DAFCF390063BC40 /* CompanyDetailTableViewController.swift in Sources */,
 				657486AD1DA6176D009B0B07 /* kexin.xcdatamodeld in Sources */,
 				650E13F81DB7BC360063BC40 /* OCChannel.m in Sources */,
 				657486FC1DAA70FD009B0B07 /* Company.swift in Sources */,
 				65B775621DB7D74200FD76AB /* UIScrollView+Refresh.swift in Sources */,
+				64BAF0411E6C2FF300991830 /* User.swift in Sources */,
 				653A37C61DC0E9B7006BAB9F /* ReportCompanyDetailWebCell.swift in Sources */,
 				6574871E1DAD288D009B0B07 /* ProductCell.swift in Sources */,
 				650E13D91DAFBA1E0063BC40 /* CertificateModel.swift in Sources */,
@@ -1037,9 +1058,12 @@
 				653A37C21DC0DF13006BAB9F /* ReportCompanyDetailController.swift in Sources */,
 				655ECE3F1E1A414400DF596F /* LoginTableViewController.swift in Sources */,
 				653A37A21DC0BFD4006BAB9F /* ProductDetailModule.swift in Sources */,
+				64D59F241E4F4E1100A0BA97 /* ReportUnknownCompanyTableViewController.swift in Sources */,
 				65B775641DBB88F800FD76AB /* ProductDetail.swift in Sources */,
 				65B775601DB7D74200FD76AB /* RefreshFooterView.swift in Sources */,
+				64D59F261E50011B00A0BA97 /* ReportKnownComanyTableViewController.swift in Sources */,
 				650E13C91DAFB7FF0063BC40 /* CompanyDetail.swift in Sources */,
+				64D59F281E50083E00A0BA97 /* SCCamera.swift in Sources */,
 				65B775891DBCF5C700FD76AB /* WarningTableController.swift in Sources */,
 				6574871A1DAD14D6009B0B07 /* Product.swift in Sources */,
 			);
@@ -1194,7 +1218,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = HA98SF97FL;
+				DEVELOPMENT_TEAM = 2636298WH8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1202,7 +1226,7 @@
 				INFOPLIST_FILE = kexin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.highjoin010.kexin;
+				PRODUCT_BUNDLE_IDENTIFIER = com.highjoin012.kexin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "kexin/kexin-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1217,7 +1241,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = HA98SF97FL;
+				DEVELOPMENT_TEAM = 2636298WH8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1225,7 +1249,7 @@
 				INFOPLIST_FILE = kexin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.highjoin010.kexin;
+				PRODUCT_BUNDLE_IDENTIFIER = com.highjoin012.kexin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "kexin/kexin-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

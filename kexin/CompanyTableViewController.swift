@@ -15,12 +15,14 @@ class CompanyTableViewController : UITableViewController , UISearchResultsUpdati
     let companyHandler = HttpHandler()
     var searchController: UISearchController!
     var pageNum: Int = 1
+    var showFavorite: Bool = false
     
-    
+    @IBOutlet var companyTableView: UITableView!
+    @IBOutlet weak var favoriteButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        //companys = companyHandler.getCompanys(keywords: "", pageNum: pageNum)
+        companys = HttpHandler.getCompanys("", pageNum: pageNum, showFavorite: showFavorite)
         searchCompanys = companys
         self.tableView.estimatedRowHeight = 10.0
         self.tableView.rowHeight = UITableViewAutomaticDimension
@@ -41,7 +43,7 @@ class CompanyTableViewController : UITableViewController , UISearchResultsUpdati
     
     func setupRefresh(){
         self.tableView.addHeaderWithCallback({
-            let tempcompanys = self.companyHandler.getCompanys("", pageNum: 1)
+            let tempcompanys = HttpHandler.getCompanys("", pageNum: 1, showFavorite: self.showFavorite)
             if(tempcompanys.count != 0)
             {
                 self.companys = tempcompanys
@@ -62,7 +64,7 @@ class CompanyTableViewController : UITableViewController , UISearchResultsUpdati
         self.tableView.addFooterWithCallback({
            
             self.pageNum = self.pageNum + 1
-            let tempcompanys = self.companyHandler.getCompanys("", pageNum: self.pageNum)
+            let tempcompanys = HttpHandler.getCompanys("", pageNum: self.pageNum, showFavorite: self.showFavorite)
             if(tempcompanys.count != 0)
             {
                 self.companys.append(contentsOf: tempcompanys)
@@ -128,13 +130,14 @@ class CompanyTableViewController : UITableViewController , UISearchResultsUpdati
                 let com = (searchController.isActive) ? searchCompanys[indexPath.row] : companys[indexPath.row]
                 destinationController.id  =  com.eid
                 destinationController.record_no =  com.record_no
+                destinationController.isFavorite = showFavorite
             }
         }
     }
     
     
     func filterContent(for searchText: String) {
-        searchCompanys = companyHandler.getCompanys(searchText, pageNum: 1)
+        searchCompanys = HttpHandler.getCompanys(searchText, pageNum: 1, showFavorite: showFavorite)
     }
     
     func updateSearchResults(for searchController: UISearchController) {
@@ -145,4 +148,30 @@ class CompanyTableViewController : UITableViewController , UISearchResultsUpdati
         }
     }
 
+    @IBAction func showIfFavorite(_ sender: Any) {
+        if HttpHandler.ifLogin() {
+            if showFavorite {
+                showFavorite=false
+                favoriteButton.isEnabled=false
+                self.viewDidLoad()
+                companyTableView.reloadData()
+                favoriteButton.setTitle("收藏的企业", for: .normal)
+                favoriteButton.isEnabled=true
+            }else{
+                showFavorite=true
+                favoriteButton.isEnabled=false
+                self.viewDidLoad()
+                companyTableView.reloadData()
+                favoriteButton.setTitle("全部企业", for: .normal)
+                favoriteButton.isEnabled=true
+            }
+            
+        }else{
+            let alertController = UIAlertController(title: "登录提示",
+                                                    message: "请登录后重试", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "好的", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
 }

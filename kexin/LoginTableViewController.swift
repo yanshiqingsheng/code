@@ -67,7 +67,7 @@ class LoginTableViewController: UITableViewController {
                 let login:UITextField = (optionMenu.textFields?.first)!
                 let password:UITextField = (optionMenu.textFields?.last)!
                 //var flag:Bool =  Top10HTTPHandler().getFromLogin(login.text, pw: password.text)
-                let flag:Bool =  self.loginHandler.getFromLogin(id:login.text!, pw: password.text!)
+                let flag:Bool =  HttpHandler.getFromLogin(id:login.text!, pw: password.text!)
 
                 var res = "登录失败"
                 if (flag){
@@ -110,7 +110,7 @@ class LoginTableViewController: UITableViewController {
             let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
             optionMenu.addAction(cancelAction)
             let okAction = UIAlertAction(title: "确定", style: .default, handler: {(action:UIAlertAction!) -> Void in
-                self.loginHandler.getLogOutList()
+                HttpHandler.logout()
                 
                 self.tableView.reloadData()
             })
@@ -149,9 +149,11 @@ class LoginTableViewController: UITableViewController {
         
         if (section == 0)
         {
-            var tmp:String = loginHandler.ifLogin()
-            if (tmp != ""){
-                cell.textLabel?.text = tmp+"已登陆"
+            var loginUser:User = HttpHandler.getLoginUser()
+            if loginUser.token == nil {
+                cell.textLabel?.text = "请登录"
+            }else{
+                cell.textLabel?.text = "\(loginUser.username!)已登录"
             }
             
         }
