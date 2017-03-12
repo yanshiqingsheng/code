@@ -129,7 +129,6 @@ class ProductTableViewController : UITableViewController , UISearchResultsUpdati
                 
                 let com = (searchController.isActive) ? searchProducts[indexPath.row] : products[indexPath.row]
                 destinationController.id  =  com.id
-                destinationController.userid =  com.id
             }
         }
     }

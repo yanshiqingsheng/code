@@ -129,19 +129,17 @@ class WarningTableController : UITableViewController , UISearchResultsUpdating {
         
         return cell
     }
-    /*
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showCompanyDetail" {
+        if segue.identifier == "showWarningDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
-                let destinationController = segue.destination as! CompanyDetailTableViewController
-                
-                let com = (searchController.isActive) ? searchCompanys[indexPath.row] : companys[indexPath.row]
-                destinationController.id  =  com.eid
-                destinationController.record_no =  com.record_no
+                let destinationController = segue.destination as! WarningDetailTableViewController
+                let com = warnings[indexPath.row]
+                destinationController.warningInfo  =  com
             }
         }
     }
-    */
+    
     
     func filterContent(for searchText: String) {
         searchwarnings = HttpHandler.getWarnings(searchText, pageNum: 1)

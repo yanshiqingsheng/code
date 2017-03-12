@@ -12,7 +12,6 @@ class ProductDetailTableViewController : UITableViewController {
     
    
     var id : String?
-    var userid : String?
     @IBOutlet var imageView: UIImageView!
     var productDetail : ProductDetail?
     let productDetailHandler = HttpHandler()
@@ -26,7 +25,11 @@ class ProductDetailTableViewController : UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        productDetail = HttpHandler.getProductDetails(self.id!, userid: HttpHandler.getLoginUser().userid!)
+        if HttpHandler.getLoginUser() == nil || HttpHandler.getLoginUser().userid == nil{
+            productDetail = HttpHandler.getProductDetails(self.id!, userid: "999")
+        }else{
+            productDetail = HttpHandler.getProductDetails(self.id!, userid: HttpHandler.getLoginUser().userid!)
+        }
         if productDetail?.iscollect == "1" {
             isFavorite = true
             doFavoriteButton.setTitle("取消收藏", for: .normal)
@@ -35,7 +38,6 @@ class ProductDetailTableViewController : UITableViewController {
         self.tableView.estimatedRowHeight = 80.0
         self.tableView.rowHeight = UITableViewAutomaticDimension
         print(productDetail?.productimg?.replacingOccurrences(of: "\"", with: ""))
-        print(self.userid)
         self.imageView.kf.setImage(with: URL(string: (productDetail?.productimg?.replacingOccurrences(of: "\"", with: ""))!))
         prepareData()
     }
