@@ -36,18 +36,18 @@ struct ProductDetailArrayList: JSONJoy {
 }
 
 struct ProductDetailArrayLists: JSONJoy {
-    let productDetailArrayLists: [ProductDetailArrayList]
+    var productDetailArrayLists: [ProductDetailArrayList]
     init(_ decoder: JSONDecoder) throws{
-        guard let coms = decoder["attrList"].array
-            else {
-                throw JSONError.wrongType
-                
-        }
+//        guard let coms = decoder["attrList"].array
+//            else {
+//                throw JSONError.wrongType
+//                
+//        }
         
         var collect = [ProductDetailArrayList]()
-        for addrDecoder in coms {
-            collect.append(ProductDetailArrayList(addrDecoder))
-        }
+//        for addrDecoder in coms {
+//            collect.append(ProductDetailArrayList(addrDecoder))
+//        }
         productDetailArrayLists = collect
     }
 }

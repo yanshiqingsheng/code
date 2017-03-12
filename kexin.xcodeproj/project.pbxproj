@@ -12,6 +12,7 @@
 		64BAF03D1E6C122100991830 /* StringMd5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BAF03C1E6C122100991830 /* StringMd5.swift */; };
 		64BAF03F1E6C15C800991830 /* HTTPResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BAF03E1E6C15C800991830 /* HTTPResponse.swift */; };
 		64BAF0411E6C2FF300991830 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BAF0401E6C2FF300991830 /* User.swift */; };
+		64BAF0431E745D3400991830 /* RegisterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BAF0421E745D3400991830 /* RegisterTableViewController.swift */; };
 		64D59F241E4F4E1100A0BA97 /* ReportUnknownCompanyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D59F231E4F4E1100A0BA97 /* ReportUnknownCompanyTableViewController.swift */; };
 		64D59F261E50011B00A0BA97 /* ReportKnownComanyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D59F251E50011B00A0BA97 /* ReportKnownComanyTableViewController.swift */; };
 		64D59F281E50083E00A0BA97 /* SCCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D59F271E50083E00A0BA97 /* SCCamera.swift */; };
@@ -276,6 +277,7 @@
 		64BAF03C1E6C122100991830 /* StringMd5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringMd5.swift; sourceTree = "<group>"; };
 		64BAF03E1E6C15C800991830 /* HTTPResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPResponse.swift; sourceTree = "<group>"; };
 		64BAF0401E6C2FF300991830 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		64BAF0421E745D3400991830 /* RegisterTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterTableViewController.swift; sourceTree = "<group>"; };
 		64D59F231E4F4E1100A0BA97 /* ReportUnknownCompanyTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportUnknownCompanyTableViewController.swift; sourceTree = "<group>"; };
 		64D59F251E50011B00A0BA97 /* ReportKnownComanyTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportKnownComanyTableViewController.swift; sourceTree = "<group>"; };
 		64D59F271E50083E00A0BA97 /* SCCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCCamera.swift; sourceTree = "<group>"; };
@@ -434,6 +436,7 @@
 				650E13F71DB7BC360063BC40 /* OCChannel.m */,
 				657486DD1DAA6D57009B0B07 /* SwiftHTTP.xcodeproj */,
 				657486A81DA6176D009B0B07 /* Main.storyboard */,
+				64BAF0421E745D3400991830 /* RegisterTableViewController.swift */,
 				64D59F231E4F4E1100A0BA97 /* ReportUnknownCompanyTableViewController.swift */,
 				653A37C11DC0DF13006BAB9F /* ReportCompanyDetailController.swift */,
 				653A37C51DC0E9B7006BAB9F /* ReportCompanyDetailWebCell.swift */,
@@ -1029,6 +1032,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65B775661DBB8B1300FD76AB /* ProductDetailArrayList.swift in Sources */,
+				64BAF0431E745D3400991830 /* RegisterTableViewController.swift in Sources */,
 				657486F61DAA6F0D009B0B07 /* HTTPHandler.swift in Sources */,
 				64BAF03F1E6C15C800991830 /* HTTPResponse.swift in Sources */,
 				65B775611DB7D74200FD76AB /* RefreshHeaderView.swift in Sources */,

@@ -20,23 +20,41 @@ class HttpHandler {
     
     static func getLoginUser()  -> User
     {
-//        return loginUser!
-        return testUser!
+        return loginUser!
+//        return testUser!
     }
     
+    //判断是否注册过
     static func ifRegister(_ phone:String) -> Bool {
         let md5=generateKeyByPhone(phone)
-        var response:HTTPResponse?
-        do{
-            response = try HTTPResponse(JSONDecoder(get_result("\(serviceAddress)/userout/get-user-by-phone/\(phone)/\(md5)",params:nil)))
-        }
-        catch {
-            return false
-        }
-        if response?.code=="00400"{
-            return false;
+        let responseJson = JSONDecoder(get_result("\(serviceAddress)/userout/get-user-by-phone/\(phone)/\(md5)",params:nil))
+        let aaa=responseJson["phone"].string
+        if aaa != nil {
+            return true
         }
         return false;
+    }
+    
+    //发送验证码, type为1表示注册，2表示修改或找回
+    static func getCode(_ phone:String, type : Int) -> Bool {
+        let md5=generateKeyByPhone(phone)
+        let responseJson:JSONDecoder=JSONDecoder(get_result("\(serviceAddress)/userout/get-validate-code/\(phone)/\(type)/\(md5)",params:nil))
+        let aaa=responseJson["code"].string
+        if aaa != nil {
+            return false
+        }
+        return true;
+    }
+    
+    //判断验证码是否正确
+    static func getTokenByCode(_ phone:String , code:String) -> User {
+        let responseJson = JSONDecoder(get_result("\(serviceAddress)/userout/checkout-code/\(phone)/\(code)",params:nil))
+        let aaa=responseJson["userid"].string
+        if aaa != nil {
+            let result : User = User(responseJson["token"].string!, tuserid: aaa!,  tusername: "")
+            return result
+        }
+        return User("",tuserid: "",tusername: "");
     }
     
     static func logout()
@@ -66,6 +84,28 @@ class HttpHandler {
             return true;
         }catch {
             return false
+        }
+        return result
+    }
+    
+    static func modifyPassword(token:String, pw: String)->Bool{
+        let result = false
+        let postRes=post_result("\(serviceAddress)/userout/modify-password", params: "password=\(pw)&token=\(token)")
+        if postRes == "success" {
+            return true
+        }
+        return result
+    }
+    
+    static func doRegister(username:String, pw: String, token: String)->Bool{
+        let result = false
+        let postRes=post_result("\(serviceAddress)/userout", params: "username=\(username)&password=\(pw)&token=\(token)")
+        if postRes == ""
+        {
+            return result
+        }
+        if postRes == "success" {
+            return true
         }
         return result
     }
@@ -105,8 +145,17 @@ class HttpHandler {
     
     static func favoriteCompany(_ companyId:String) -> Bool{
         let tmpUserId:String=getLoginUser().userid!
-        let postRes=post_result("\(serviceAddress)/userout/login"+"?companyid=\(companyId)&userid=\(tmpUserId)",params: "")
-        if postRes != nil {
+        let postRes=post_result("\(serviceAddress)/collect-company"+"?companyid=\(companyId)&userid=\(tmpUserId)",params: "")
+        if postRes != "" {
+            return true
+        }
+        return false
+    }
+    
+    static func cancelFavoriteCompany(_ companyId:String) -> Bool{
+        let tmpUserId:String=getLoginUser().userid!
+        let postRes=delete_result("\(serviceAddress)/collect-company"+"?companyid=\(companyId)&userid=\(tmpUserId)",params: "")
+        if postRes != "" {
             return true
         }
         return false
@@ -174,19 +223,43 @@ class HttpHandler {
     }
     
     
-    static func getProducts(_ keywords:String, pageNum :Int) -> [Product]
+    static func getProducts(_ keywords:String, pageNum :Int, showFavorite:Bool) -> [Product]
     {
         var products:[Product] = []
-        let params1 = ["productname":keywords,"page":pageNum.description,"pageSize":"10"]
+        
         do {
             //print("city is: \(get_result())")
-            
-            products = try Products(JSONDecoder("{\"products\":" + get_result("\(serviceAddress)/search-product", params: params1) + "}")).products
+            if showFavorite{
+                let tmpUserId:String=getLoginUser().userid!
+                let params1 = ["productname":keywords,"page":pageNum.description,"pageSize":"10","userid":tmpUserId]
+                products = try Products(JSONDecoder("{\"products\":" + get_result("\(serviceAddress)/search-collect-product", params: params1) + "}")).products
+            }else {
+                let params1 = ["productname":keywords,"page":pageNum.description,"pageSize":"10"]
+                products = try Products(JSONDecoder("{\"products\":" + get_result("\(serviceAddress)/search-product", params: params1) + "}")).products
+            }
             
         } catch {
             print("unable to parse the JSON")
         }
         return products
+    }
+    
+    static func favoriteProduct(_ productid:String) -> Bool{
+        let tmpUserId:String=getLoginUser().userid!
+        let postRes=post_result("\(serviceAddress)/collect-product"+"?productid=\(productid)&userid=\(tmpUserId)",params: "")
+        if postRes != "" {
+            return true
+        }
+        return false
+    }
+    
+    static func cancelFavoriteProduct(_ productid:String) -> Bool{
+        let tmpUserId:String=getLoginUser().userid!
+        let postRes=delete_result("\(serviceAddress)/collect-product"+"?productid=\(productid)&userid=\(tmpUserId)",params: "")
+        if postRes != "" {
+            return true
+        }
+        return false
     }
     
     static func getFile(_ fileId:String) -> Data {
@@ -269,33 +342,34 @@ class HttpHandler {
         
     }
     
-    static func delete_result(_ url:String,params:Dictionary<String, String>?)->String
+    static func delete_result(_ url:String,params:String)->String
     {
-        var result:String? = ""
-        print(url)
+        //        var path = "http://android.ecdata.org.cn:9080/userout/login"
+        //        var headparams:NSMutableDictionary = NSMutableDictionary()
+        //        headparams["X-xxxx-App-Token"] = "xxxxxx-xxx-xxxx-xxxx-xxxxxxxxxx"
+        // 1. URL
+        var nsurl:NSURL = NSURL(string: url)!
+        
+        // 2. 请求(可以改的请求)
+        var request:NSMutableURLRequest = NSMutableURLRequest(url: nsurl as URL)
+        request.httpMethod = "DELETE"
+        let boundary:String="-------------------21212222222222222222222"
+        request.httpBody = params.data(using: String.Encoding.utf8, allowLossyConversion: false)! as Data
+        request.setValue("xxxxxx-xxx-xxxx-xxxx-xxxxxxxxxx", forHTTPHeaderField:"X-xxxx-App-Token")
+        /*NSURLConnection.sendAsynchronousRequest(request as URLRequest, queue:OperationQueue()) { (res, data, error)in
+         
+         let  str = NSString(data: data!, encoding:String.Encoding.utf8.rawValue)
+         print(str)
+         
+         }*/
+        var response:URLResponse?
         do {
-            
-            let opt = try HTTP.GET(url, parameters: params)
-            opt.start { response in
-                if let err = response.error {
-                    print("error: \(err.localizedDescription)")
-                    result = NSString(data: response.data, encoding: String.Encoding.utf8.rawValue) as String?
-                    //                    return //also notify app of failure as needed
-                }
-                result = response.text
-                print("opt finished: \(response.text)")
-            }
-        } catch let error {
-            print("got an error creating the request: \(error)")
+            try NSURLConnection.sendSynchronousRequest(request as URLRequest,returning:&response) as NSData?
+            return "success"
+        }catch {
         }
-        
-        while result == "" {
-            sleep(1)
-            //return result!
-        }
-        //sleep(2)
-        return result!
-        
+        return ""
+
     }
 
     

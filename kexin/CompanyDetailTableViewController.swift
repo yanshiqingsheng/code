@@ -94,14 +94,33 @@ class CompanyDetailTableViewController : UITableViewController {
         return cell
     }
     @IBAction func doFavorite(_ sender: Any) {
-        if !isFavorite! {
-            doFavoriteButton.isEnabled=false
-            let favoriteResult=HttpHandler.favoriteCompany(id!)
-            if favoriteResult {
-                doFavoriteButton.setTitle("取消收藏", for: .normal)
+        if HttpHandler.ifLogin() {
+            
+            if !isFavorite! {
+                doFavoriteButton.isEnabled=false
+                let favoriteResult=HttpHandler.favoriteCompany(id!)
+                if favoriteResult {
+                    doFavoriteButton.setTitle("取消收藏", for: .normal)
+                }else{
+                }
+                isFavorite=true
+                doFavoriteButton.isEnabled=true
             }else{
+                doFavoriteButton.isEnabled=false
+                let favoriteResult=HttpHandler.cancelFavoriteCompany(id!)
+                if favoriteResult {
+                    doFavoriteButton.setTitle("收藏", for: .normal)
+                }else{
+                }
+                doFavoriteButton.isEnabled=true
+                isFavorite=false
             }
-            doFavoriteButton.isEnabled=true
+        }else{
+            let alertController = UIAlertController(title: "登录提示",
+                                                    message: "请登录后重试", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "好的", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
         }
     }
     

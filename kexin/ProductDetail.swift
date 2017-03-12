@@ -53,7 +53,10 @@ struct ProductDetail: JSONJoy {
             webSiteList = try WebSiteList()
         }
         //print("\"attrList\":"+decoder["attrList"].description+"}")
-        attrList = try ProductDetailArrayLists(JSONDecoder("{\"attrList\":"+decoder["attrList"].description+"}"))
+        attrList = try ProductDetailArrayLists(JSONDecoder("{\"attrList\":"+"[]"+"}"))
+        for tmpJsonDecoder in decoder["attrList"].array!{
+            attrList?.productDetailArrayLists.append(ProductDetailArrayList(tmpJsonDecoder))
+        }
         iscollect  = decoder["iscollect"].string
         iscomment = decoder["iscomment"].string
         passtime = decoder["passtime"].integer

@@ -18,14 +18,19 @@ class ProductDetailTableViewController : UITableViewController {
     let productDetailHandler = HttpHandler()
     
     var productDetailModules: [ProductDetailModule] = []
+    var isFavorite:Bool=false
     
+    @IBOutlet weak var doFavoriteButton: UIButton!
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        productDetail = HttpHandler.getProductDetails(self.id!, userid: self.userid!)
+        productDetail = HttpHandler.getProductDetails(self.id!, userid: HttpHandler.getLoginUser().userid!)
+        if productDetail?.iscollect == "1" {
+            isFavorite = true
+            doFavoriteButton.setTitle("取消收藏", for: .normal)
+        }
         // Do any additional setup after loading the view, typically from a nib.
         self.tableView.estimatedRowHeight = 80.0
         self.tableView.rowHeight = UITableViewAutomaticDimension
@@ -62,14 +67,9 @@ class ProductDetailTableViewController : UITableViewController {
         productDetailModules.append(temp)
 
         for cc in (productDetail?.attrList?.productDetailArrayLists)! {
-        
-        
             temp.labelName = cc.display_name
             temp.labelValue = cc.value
             productDetailModules.append(temp)
-        
-        
-        
         }
     
     }
@@ -148,6 +148,35 @@ class ProductDetailTableViewController : UITableViewController {
         return cell
     }
     
+    @IBAction func doFavorite(_ sender: Any) {
+        if HttpHandler.ifLogin() {
+            if !isFavorite {
+                doFavoriteButton.isEnabled=false
+                let favoriteResult=HttpHandler.favoriteProduct(id!)
+                if favoriteResult {
+                    doFavoriteButton.setTitle("取消收藏", for: .normal)
+                }else{
+                }
+                isFavorite=true
+                doFavoriteButton.isEnabled=true
+            }else{
+                doFavoriteButton.isEnabled=false
+                let favoriteResult=HttpHandler.cancelFavoriteProduct(id!)
+                if favoriteResult {
+                    doFavoriteButton.setTitle("收藏", for: .normal)
+                }else{
+                }
+                doFavoriteButton.isEnabled=true
+                isFavorite=false
+            }
+        }else{
+            let alertController = UIAlertController(title: "登录提示",
+                                                    message: "请登录后重试", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "好的", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
     
     
     

@@ -16,12 +16,16 @@ class ProductTableViewController : UITableViewController , UISearchResultsUpdati
     let productHandler = HttpHandler()
     var searchProducts:[Product] = []
     var pageNum: Int = 1
+    var showFavorite: Bool = false
+
     
+    @IBOutlet var productTableView: UITableView!
+    @IBOutlet weak var favoriteButton: UIButton!
     var searchController: UISearchController!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        products = HttpHandler.getProducts("", pageNum: pageNum)
+        products = HttpHandler.getProducts("", pageNum: pageNum,showFavorite: showFavorite)
         self.tableView.estimatedRowHeight = 80.0
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
@@ -39,7 +43,7 @@ class ProductTableViewController : UITableViewController , UISearchResultsUpdati
     
     func setupRefresh(){
         self.tableView.addHeaderWithCallback({
-            let tempproducts = HttpHandler.getProducts("", pageNum: self.pageNum)
+            let tempproducts = HttpHandler.getProducts("", pageNum: self.pageNum, showFavorite: self.showFavorite)
             if(tempproducts.count != 0)
             {
                 self.products = tempproducts
@@ -60,7 +64,7 @@ class ProductTableViewController : UITableViewController , UISearchResultsUpdati
         self.tableView.addFooterWithCallback({
             
             self.pageNum = self.pageNum + 1
-            let tempproducts = HttpHandler.getProducts("", pageNum: self.pageNum)
+            let tempproducts = HttpHandler.getProducts("", pageNum: self.pageNum, showFavorite: self.showFavorite)
             if(tempproducts.count != 0)
             {
                 self.products.append(contentsOf: tempproducts)
@@ -133,7 +137,7 @@ class ProductTableViewController : UITableViewController , UISearchResultsUpdati
     
     
     func filterContent(for searchText: String) {
-        searchProducts = HttpHandler.getProducts(searchText, pageNum: 1)
+        searchProducts = HttpHandler.getProducts(searchText, pageNum: 1, showFavorite: showFavorite)
     }
     
     func updateSearchResults(for searchController: UISearchController) {
@@ -144,5 +148,32 @@ class ProductTableViewController : UITableViewController , UISearchResultsUpdati
         }
     }
 
+    @IBAction func showFavorite(_ sender: Any) {
+        if HttpHandler.ifLogin() {
+            if showFavorite {
+                showFavorite=false
+                favoriteButton.isEnabled=false
+                self.viewDidLoad()
+                productTableView.reloadData()
+                favoriteButton.setTitle("收藏的商品", for: .normal)
+                favoriteButton.isEnabled=true
+            }else{
+                showFavorite=true
+                favoriteButton.isEnabled=false
+                self.viewDidLoad()
+                productTableView.reloadData()
+                favoriteButton.setTitle("全部商品", for: .normal)
+                favoriteButton.isEnabled=true
+            }
+            
+        }else{
+            let alertController = UIAlertController(title: "登录提示",
+                                                    message: "请登录后重试", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "好的", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
+
+    }
     
 }
